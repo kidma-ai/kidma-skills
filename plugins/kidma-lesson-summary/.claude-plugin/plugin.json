@@ -1,0 +1,12 @@
+{
+  "name": "kidma-lesson-summary",
+  "description": "Generate a 1-2 page branded PDF lesson summary for students",
+  "version": "1.0.0",
+  "author": {
+    "name": "Kidma Technologies and Education Ltd.",
+    "email": "kidma2030@gmail.com"
+  },
+  "homepage": "https://kid-ma.com",
+  "repository": "https://github.com/YOUR_ORG/kidma-skills",
+  "category": "lessons"
+}

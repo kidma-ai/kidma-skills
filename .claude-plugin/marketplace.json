@@ -1,0 +1,117 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.json",
+  "name": "kidma-plugins",
+  "description": "Official Kidma plugin library — lesson planning, presentations, and brand assets for Claude Code",
+  "version": "1.0.0",
+  "owner": {
+    "name": "Kidma Technologies and Education Ltd.",
+    "email": "kidma2030@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "kidma-company-overview",
+      "source": "./plugins/kidma-company-overview",
+      "description": "Full Kidma company context — programs, metrics, history, business model",
+      "version": "1.0.0",
+      "category": "foundation",
+      "tags": [
+        "foundation",
+        "context",
+        "company",
+        "kidma"
+      ]
+    },
+    {
+      "name": "kidma-brand-guidelines",
+      "source": "./plugins/kidma-brand-guidelines",
+      "description": "Official Kidma brand styling — colors, typography, logos, light/dark mode",
+      "version": "1.0.0",
+      "category": "foundation",
+      "tags": [
+        "foundation",
+        "brand",
+        "design",
+        "colors",
+        "typography"
+      ]
+    },
+    {
+      "name": "kidma-lesson-generator",
+      "source": "./plugins/kidma-lesson-generator",
+      "description": "Generate complete Kidma lesson plans following the Understand-Try-Create pedagogy",
+      "version": "1.0.0",
+      "category": "lessons",
+      "tags": [
+        "lessons",
+        "planning",
+        "pedagogy",
+        "curriculum"
+      ]
+    },
+    {
+      "name": "kidma-lesson-docx",
+      "source": "./plugins/kidma-lesson-docx",
+      "description": "Export a Kidma lesson plan to a branded Word (.docx) document",
+      "version": "1.0.0",
+      "category": "lessons",
+      "tags": [
+        "lessons",
+        "docx",
+        "word",
+        "export"
+      ]
+    },
+    {
+      "name": "kidma-lesson-extractor",
+      "source": "./plugins/kidma-lesson-extractor",
+      "description": "Extract and reverse-engineer content from existing Kidma lesson materials",
+      "version": "1.0.0",
+      "category": "lessons",
+      "tags": [
+        "lessons",
+        "extraction",
+        "content",
+        "knowledge-base"
+      ]
+    },
+    {
+      "name": "kidma-lesson-summary",
+      "source": "./plugins/kidma-lesson-summary",
+      "description": "Generate a 1-2 page branded PDF lesson summary for students",
+      "version": "1.0.0",
+      "category": "lessons",
+      "tags": [
+        "lessons",
+        "pdf",
+        "summary",
+        "students"
+      ]
+    },
+    {
+      "name": "kidma-presentation-planner",
+      "source": "./plugins/kidma-presentation-planner",
+      "description": "Plan Kidma lesson presentations slide-by-slide with user approval",
+      "version": "1.0.0",
+      "category": "presentations",
+      "tags": [
+        "presentations",
+        "planning",
+        "slides",
+        "pptx"
+      ]
+    },
+    {
+      "name": "kidma-presentation-builder",
+      "source": "./plugins/kidma-presentation-builder",
+      "description": "Build a branded Kidma PPTX presentation file from an approved plan",
+      "version": "1.0.0",
+      "category": "presentations",
+      "tags": [
+        "presentations",
+        "pptx",
+        "export",
+        "build"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "kidma-presentation-planner",
+  "description": "Plan Kidma lesson presentations slide-by-slide with user approval",
+  "version": "1.0.0",
+  "author": {
+    "name": "Kidma Technologies and Education Ltd.",
+    "email": "kidma2030@gmail.com"
+  },
+  "homepage": "https://kid-ma.com",
+  "repository": "https://github.com/YOUR_ORG/kidma-skills",
+  "category": "presentations"
+}
