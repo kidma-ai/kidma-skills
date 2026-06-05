@@ -1,0 +1,12 @@
+{
+  "name": "kidma-write-article",
+  "description": "Draft a complete Hebrew article for Kidma writing surfaces — produces a single .md content block (frontmatter + Markdown body). Site-specific embedding (MDX, slug, hero, PR) is handled separately.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Kidma Technologies and Education Ltd.",
+    "email": "kidma2030@gmail.com"
+  },
+  "homepage": "https://kid-ma.com",
+  "repository": "https://github.com/kidma-ai/kidma-skills",
+  "category": "content"
+}

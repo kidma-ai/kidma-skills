@@ -112,6 +112,20 @@
         "export",
         "build"
       ]
+    },
+    {
+      "name": "kidma-write-article",
+      "source": "./plugins/kidma-write-article",
+      "description": "Draft a complete Hebrew article for Kidma writing surfaces — produces a single .md content block (frontmatter + Markdown body)",
+      "version": "1.0.0",
+      "category": "content",
+      "tags": [
+        "content",
+        "article",
+        "drafting",
+        "hebrew",
+        "blog"
+      ]
     }
   ]
 }
