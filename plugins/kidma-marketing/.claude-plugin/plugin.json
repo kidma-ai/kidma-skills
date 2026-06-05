@@ -1,0 +1,22 @@
+{
+  "$schema": "https://code.claude.com/schemas/plugin.v2.json",
+  "name": "kidma-marketing",
+  "description": "Kidma outreach and communication tools — newsletters, stakeholder presentations, social content (coming soon)",
+  "version": "0.1.0",
+  "category": "marketing",
+  "tags": ["marketing", "outreach", "presentations", "newsletter", "communication"],
+  "author": {
+    "name": "Kidma Technologies and Education Ltd.",
+    "email": "kidma2030@gmail.com",
+    "homepage": "https://kid-ma.com"
+  },
+  "repository": "https://github.com/kidma2030/kidma-skills",
+  "dependencies": {
+    "required": ["kidma-company"],
+    "optional": []
+  },
+  "skills": [],
+  "changelog": [
+    { "version": "0.1.0", "date": "2026-06-05", "notes": "Placeholder — skills coming soon" }
+  ]
+}
