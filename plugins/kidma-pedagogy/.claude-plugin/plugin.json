@@ -1,0 +1,116 @@
+{
+  "$schema": "https://code.claude.com/schemas/plugin.v2.json",
+  "name": "kidma-pedagogy",
+  "description": "Complete lesson and presentation authoring toolkit — plan, export, extract, summarize, and present Kidma lessons",
+  "version": "1.0.0",
+  "category": "pedagogy",
+  "tags": ["lessons", "pedagogy", "curriculum", "presentations", "docx", "pptx", "hebrew", "rtl", "interactive"],
+  "author": {
+    "name": "Kidma Technologies and Education Ltd.",
+    "email": "kidma2030@gmail.com",
+    "homepage": "https://kid-ma.com"
+  },
+  "repository": "https://github.com/kidma2030/kidma-skills",
+  "dependencies": {
+    "required": ["kidma-company"],
+    "optional": []
+  },
+  "skills": [
+    {
+      "name": "lesson-planner",
+      "file": "./skills/lesson-planner.md",
+      "type": "interactive",
+      "output": {
+        "format": "json",
+        "file": "/home/claude/lesson_content.json",
+        "schema": "./schemas/lesson-content.schema.json"
+      }
+    },
+    {
+      "name": "lesson-to-word",
+      "file": "./skills/lesson-to-word.md",
+      "type": "generation",
+      "input": {
+        "format": "json",
+        "file": "/home/claude/lesson_content.json",
+        "schema": "./schemas/lesson-content.schema.json"
+      },
+      "output": {
+        "format": "docx",
+        "file": "/mnt/user-data/outputs/lesson_plan.docx"
+      },
+      "runtime": {
+        "tools": ["bash"],
+        "python_packages": ["python-docx"],
+        "requires_network": false,
+        "requires_filesystem_write": true
+      }
+    },
+    {
+      "name": "structure-lesson-content",
+      "file": "./skills/structure-lesson-content.md",
+      "type": "extraction",
+      "output": {
+        "format": "markdown",
+        "file": "/mnt/user-data/outputs/kidma_lesson_*.md"
+      },
+      "runtime": {
+        "tools": ["google_drive_fetch", "google_drive_search"],
+        "python_packages": [],
+        "requires_network": true,
+        "requires_filesystem_write": true
+      }
+    },
+    {
+      "name": "lesson-exercise",
+      "file": "./skills/lesson-exercise.md",
+      "type": "generation",
+      "input": {
+        "format": "json",
+        "file": "/home/claude/lesson_content.json",
+        "schema": "./schemas/summary-content.schema.json"
+      },
+      "output": {
+        "format": "pdf",
+        "file": "/mnt/user-data/outputs/lesson_summary.pdf"
+      },
+      "runtime": {
+        "tools": ["bash"],
+        "python_packages": ["reportlab"],
+        "requires_network": false,
+        "requires_filesystem_write": true
+      }
+    },
+    {
+      "name": "slides-planner",
+      "file": "./skills/slides-planner.md",
+      "type": "interactive",
+      "output": {
+        "format": "text",
+        "file": "/home/claude/presentation_plan.txt"
+      }
+    },
+    {
+      "name": "slides-builder",
+      "file": "./skills/slides-builder.md",
+      "type": "generation",
+      "input": {
+        "format": "text",
+        "file": "/home/claude/presentation_plan.txt"
+      },
+      "output": {
+        "format": "pptx",
+        "file": "/mnt/user-data/outputs/presentation.pptx"
+      },
+      "runtime": {
+        "tools": ["bash"],
+        "python_packages": ["python-pptx"],
+        "requires_network": false,
+        "requires_filesystem_write": true
+      }
+    }
+  ],
+  "changelog": [
+    { "version": "1.0.0", "date": "2026-01-15", "notes": "Initial release — full lesson and presentation toolkit" }
+  ]
+}

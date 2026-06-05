@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Kidma Lesson Content",
+  "description": "Structured content for a Kidma lesson plan. All text values must be in Hebrew.",
+  "type": "object",
+  "required": ["lesson_number", "title", "objectives", "materials", "structure", "assessment"],
+  "properties": {
+    "lesson_number": {
+      "type": "string",
+      "description": "Lesson number in the sequence (e.g. '6')"
+    },
+    "title": {
+      "type": "string",
+      "description": "Lesson title in Hebrew"
+    },
+    "objectives": {
+      "type": "object",
+      "required": ["understanding", "experimentation", "creation"],
+      "properties": {
+        "understanding":   { "type": "array", "items": { "type": "string" }, "description": "הבנה bullets" },
+        "experimentation": { "type": "array", "items": { "type": "string" }, "description": "התנסות bullets" },
+        "creation":        { "type": "array", "items": { "type": "string" }, "description": "יצירה bullets" }
+      }
+    },
+    "materials": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Required materials list"
+    },
+    "learning_materials": {
+      "type": "string",
+      "description": "Free text with instructor self-study links"
+    },
+    "structure": {
+      "type": "object",
+      "required": ["introduction", "understanding", "experimentation", "creation", "summary"],
+      "properties": {
+        "introduction":   { "$ref": "#/definitions/phase" },
+        "understanding":  { "$ref": "#/definitions/phase" },
+        "experimentation":{ "$ref": "#/definitions/phase" },
+        "creation":       { "$ref": "#/definitions/phase" },
+        "summary":        { "$ref": "#/definitions/phase" }
+      }
+    },
+    "dead_time": {
+      "type": "string",
+      "description": "Filler activities for when the class finishes early"
+    },
+    "assessment": {
+      "type": "string",
+      "description": "How to evaluate lesson success"
+    },
+    "instructor_notes": {
+      "type": "string",
+      "description": "Tips and guidance for the instructor"
+    }
+  },
+  "definitions": {
+    "phase": {
+      "type": "object",
+      "required": ["description", "bullets"],
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Phase narrative paragraph"
+        },
+        "bullets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "text"],
+            "properties": {
+              "label": { "type": "string" },
+              "text":  { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

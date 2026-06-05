@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Kidma Lesson Exercise (Summary) Content",
+  "description": "Structured content for a Kidma student-facing lesson summary PDF.",
+  "type": "object",
+  "required": ["lesson_title", "lesson_subtitle", "sections"],
+  "properties": {
+    "lesson_title": {
+      "type": "string",
+      "description": "Full title, e.g. 'סיכום שיעור טקסט לדיבור'"
+    },
+    "lesson_subtitle": {
+      "type": "string",
+      "description": "Subtitle / topic line shown below title"
+    },
+    "two_column": {
+      "type": "boolean",
+      "default": false,
+      "description": "Set true to render sections in a 2-column grid (for content-heavy summaries)"
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "color", "type"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Section header in Hebrew"
+          },
+          "color": {
+            "type": "string",
+            "enum": ["vocab", "understand", "try", "create", "process", "tips", "default"],
+            "description": "Semantic color: vocab/understand→Blue #2669F6, try→Green #93DC88, create→Pink #FF70A3, process/default→Dark #292920"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["bullets", "steps", "callout", "text"],
+            "description": "Layout type for this section"
+          },
+          "items": {
+            "type": "array",
+            "description": "For bullets and steps types",
+            "items": {
+              "type": "object",
+              "required": ["text"],
+              "properties": {
+                "term": { "type": "string", "description": "Optional bold label" },
+                "text": { "type": "string", "description": "Bullet/step body text" }
+              }
+            }
+          },
+          "content": {
+            "type": "string",
+            "description": "For callout and text types: paragraph/box content"
+          }
+        }
+      }
+    }
+  }
+}
