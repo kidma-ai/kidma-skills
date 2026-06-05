@@ -34,19 +34,5 @@
         { "step": 2, "skill": "slides-builder", "consumes": "presentation_plan.txt", "produces": "presentation.pptx" }
       ]
     },
-    {
-      "name": "kidma-write-article",
-      "source": "./plugins/kidma-write-article",
-      "description": "Draft a complete Hebrew article for Kidma writing surfaces — produces a single .md content block (frontmatter + Markdown body)",
-      "version": "1.0.0",
-      "category": "content",
-      "tags": [
-        "content",
-        "article",
-        "drafting",
-        "hebrew",
-        "blog"
-      ]
-    }
   ]
 }
