@@ -2,7 +2,7 @@
   "$schema": "https://code.claude.com/schemas/plugin.v2.json",
   "name": "kidma-marketing",
   "description": "Kidma outreach and communication tools — newsletters, stakeholder presentations, social content (coming soon)",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "category": "marketing",
   "tags": ["marketing", "outreach", "presentations", "newsletter", "communication"],
   "author": {
@@ -15,8 +15,18 @@
     "required": ["kidma-company"],
     "optional": []
   },
-  "skills": [],
+  "skills": [
+    {
+      "name": "write-article",
+      "file": "./skills/write-article.md",
+      "type": "interactive",
+      "output": {
+        "format": "markdown",
+        "description": "Frontmatter + Hebrew Markdown body printed to chat for human review"
+      }
+    }
+  ],
   "changelog": [
-    { "version": "0.1.0", "date": "2026-06-05", "notes": "Placeholder — skills coming soon" }
+    { "version": "1.0.0", "date": "2026-06-05", "notes": "Added write-article skill — Hebrew article drafting for kid-ma.com, newsletters, and school proposals" }
   ]
 }

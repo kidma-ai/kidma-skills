@@ -1,5 +1,5 @@
 # Changelog — kidma-marketing
 
-## 0.1.0 — 2026-06-05
+## 1.0.0 — 2026-06-05
 
-- Placeholder plugin created — skills coming soon (newsletters, stakeholder presentations, social content)
+- Initial release — `write-article` skill added (Hebrew article drafting for kid-ma.com, newsletters, and school proposals)

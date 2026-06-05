@@ -1,5 +1,11 @@
 ---
-description: "Draft a complete Hebrew article for Kidma writing surfaces (kid-ma.com /articles, newsletters, LinkedIn posts, school proposals). Produces a single `.md` content block — frontmatter + Markdown body — printed to chat for human review. Does NOT handle site-specific embedding, MDX components, file placement, or git workflow — those belong to the consuming surface (e.g., the kidma-site repo's `publish-article` skill). Use this skill when the user asks to write, draft, or generate an article, blog post, or piece of long-form content for Kidma. Depends on `kidma-company-overview` (company facts, audience, programs) and `kidma-brand-guidelines` (brand colors, methodology code, slogan formatting) — both must be read at session start. Triggers: 'write an article', 'draft an article', 'new article about X', 'cornerstone piece for principals', 'write content for Kidma'."
+description: "Draft a complete Hebrew article for Kidma writing surfaces (kid-ma.com /articles, newsletters, LinkedIn posts, school proposals). Produces a single `.md` content block — frontmatter + Markdown body — printed to chat for human review. Does NOT handle site-specific embedding, MDX components, file placement, or git workflow — those belong to the consuming surface (e.g., the kidma-site repo's `publish-article` skill). Use this skill when the user asks to write, draft, or generate an article, blog post, or piece of long-form content for Kidma. Depends on `kidma-plugins:overview` (company facts, audience, programs) and `kidma-plugins:brand` (brand colors, methodology code, slogan formatting) — both must be read at session start. Triggers: 'write an article', 'draft an article', 'new article about X', 'cornerstone piece for principals', 'write content for Kidma'."
+type: interactive
+depends_on:
+  - kidma-plugins:overview
+  - kidma-plugins:brand
+invokes: []
+output_format: markdown
 ---
 
 # Kidma: Write an Article (Content Generator)
@@ -10,8 +16,8 @@ Produce the `.md` content of a Hebrew article aimed at school principals. Output
 
 Two foundation skills carry context this skill relies on. **Read both before generating any content.** Do not duplicate their content inline; refer to them.
 
-- `kidma-company-overview` — company facts, audience definition (school principals + senior education staff), programs, partners, founders, 2028 vision. Drives whether a claim is on-brand and whether a named partner/educator is verifiable.
-- `kidma-brand-guidelines` — full color palette, methodology code (Understand=Blue · Try=Green · Create=Pink), slogan formatting rules, typography. Drives the `suggestedAccent` frontmatter value.
+- `kidma-plugins:overview` — company facts, audience definition (school principals + senior education staff), programs, partners, founders, 2028 vision. Drives whether a claim is on-brand and whether a named partner/educator is verifiable.
+- `kidma-plugins:brand` — full color palette, methodology code (Understand=Blue · Try=Green · Create=Pink), slogan formatting rules, typography. Drives the `suggestedAccent` frontmatter value.
 
 **One writing principle that supersedes everything else:**
 Kidma's writing surfaces exist to move a principal closer to booking an intro meeting. Every article must be evaluable against this — does it earn that meeting, or distract from it? The publisher will insert the actual call-to-action; the writer's job is to produce prose that *earns* it.
@@ -172,6 +178,6 @@ That's the entire shape. Everything else is judgment.
 
 ## Related Skills
 
-- **`kidma-company-overview`** — Required. Company facts, audience, programs, partners.
-- **`kidma-brand-guidelines`** — Required. Brand colors, methodology code, slogan rules.
+- **`kidma-plugins:overview`** — Required. Company facts, audience, programs, partners.
+- **`kidma-plugins:brand`** — Required. Brand colors, methodology code, slogan rules.
 - **`publish-article`** (project-local in kidma-site) — Consumes this skill's output and embeds it into the kidma-site `/articles` route. Handles slug, hero image, MDX transform, branch + PR.
