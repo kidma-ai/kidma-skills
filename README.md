@@ -1,6 +1,6 @@
 # ⚡ Kidma Plugin Marketplace
 
-> Official Kidma plugin library for **Claude Code** — lesson planning, presentations, and brand assets.
+> Official Kidma plugin library for **Claude Code** — lesson planning, presentations, brand assets, and content drafting.
 
 ## Quick Start
 
@@ -47,6 +47,12 @@
 | `kidma-presentation-planner` | Plan slides interactively with step-by-step approval |
 | `kidma-presentation-builder` | Build PPTX file from an approved slide plan |
 
+### ✍️ Content
+
+| Plugin | Description |
+|--------|-------------|
+| `kidma-write-article` | Draft a complete Hebrew article (frontmatter + Markdown body) for any Kidma writing surface |
+
 ---
 
 ## Recommended Pipelines
@@ -60,6 +66,12 @@ kidma-lesson-generator  →  kidma-lesson-docx
 ```
 kidma-presentation-planner  →  kidma-presentation-builder
 ```
+
+**New article for kidma-site:**
+```
+kidma-write-article  →  publish-article  (project-local in kidma-site repo)
+```
+The publisher half lives in `kidma-site/.claude/skills/publish-article/` — it's a project-local skill, not installed via this marketplace. It picks up the `.md` produced by `kidma-write-article` and turns it into an MDX file + PR.
 
 ---
 
@@ -125,11 +137,14 @@ kidma-skills/
 │   │   ├── .claude-plugin/plugin.json
 │   │   ├── skills/kidma-presentation-planner/SKILL.md
 │   │   └── references/slide-types.md
-│   └── kidma-presentation-builder/
+│   ├── kidma-presentation-builder/
+│   │   ├── .claude-plugin/plugin.json
+│   │   ├── skills/kidma-presentation-builder/SKILL.md
+│   │   ├── assets/template.pptx
+│   │   └── references/slide-catalog.md
+│   └── kidma-write-article/
 │       ├── .claude-plugin/plugin.json
-│       ├── skills/kidma-presentation-builder/SKILL.md
-│       ├── assets/template.pptx
-│       └── references/slide-catalog.md
+│       └── skills/kidma-write-article/SKILL.md
 └── README.md
 ```
 
