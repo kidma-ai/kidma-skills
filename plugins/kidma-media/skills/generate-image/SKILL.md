@@ -36,6 +36,18 @@ Mirrors `kidma-marketing:article-image-prompt`. Use a preset whenever the contex
 
 Each preset injects a `prompt_prefix` and `prompt_suffix` and sets sensible aspect + size defaults. The user's prompt becomes the "subject" inside the preset's framing.
 
+## Disambiguation before calling
+
+Before invoking the script, check the user's request against three axes. Resolve any axis they did **not** pin (in chat or via a flag) with a single grouped `AskUserQuestion`. Skip the prompt entirely if all axes are pinned.
+
+| Axis    | Pinned when…                                          | Ask if ambiguous                                                                                          |
+|---------|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| Preset  | User named a preset, or said "not brand"              | `kidma-warm-documentary` / `kidma-blue-conceptual` / `kidma-green-conceptual` / `kidma-pink-conceptual` / `No preset (Recommended)` |
+| Model   | User said "photoreal", "Pro", "Imagen", or "variants" | `Nano Banana 2 (Recommended)` / `Imagen 4 (photoreal)` / `Nano Banana Pro (slow, best quality)`           |
+| Aspect  | User named a target (hero, square, vertical, story)   | `1:1 (Recommended)` / `16:9 horizontal` / `9:16 vertical` / `4:3` / `3:4`                                 |
+
+Defaults shown as **Recommended** are the cheapest/fastest options — list them first. Only ask for axes that are genuinely unresolved; one round of questions, not three.
+
 ## Calling the script
 
 ```bash

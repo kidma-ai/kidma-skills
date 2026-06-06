@@ -19,7 +19,12 @@ Run the setup check once. It detects what's missing and installs / configures wh
 2. `pip install --user`s any missing Python packages (`google-genai`, `Pillow`, `pyyaml`).
 3. Confirms `GEMINI_API_KEY` (or `GOOGLE_API_KEY`) is in the environment. If absent, prints instructions to generate one at https://aistudio.google.com/apikey and add it to your shell rc file. The key is **never echoed**.
 4. Registers the `gemini-api-docs` MCP server at user scope if not already present (`claude mcp add --transport http --scope user gemini-api-docs https://gemini-api-docs-mcp.dev`).
-5. Resolves and creates the output directory (priority order: `KIDMA_MEDIA_OUTPUT_DIR` env var → `~/.config/kidma-media/config.json` → `/mnt/user-data/outputs/` → `~/kidma-media-outputs/`) and persists the choice to user config.
+5. Resolves and creates the output directory (priority order: `KIDMA_MEDIA_OUTPUT_DIR` env var → `~/.config/kidma-media/config.json` → `/mnt/user-data/outputs/` if it exists). If none of those apply, **stop and ask the user** with `AskUserQuestion` before committing to a path — moving files later is annoying:
+    - `~/kidma-media-outputs (Recommended)` — keeps generated assets out of the project tree.
+    - `~/Pictures/kidma-media` — groups with other visual assets.
+    - `~/Desktop/kidma-media` — most visible while iterating.
+
+    Persist the choice to user config.
 6. Sets a default TTS voice (`Achernar`) in user config if not already set.
 7. Sends a 1-token text request to `gemini-3.5-flash` to confirm the API key actually works.
 

@@ -73,7 +73,12 @@ If validation fails, revert the edit (re-Edit back to the original) and surface 
 ### 6. Bump CHANGELOG and offer to commit
 
 - Append a dated entry to `plugins/kidma-media/CHANGELOG.md` summarizing the model changes.
-- Ask the user if they want to commit + push the change. Do NOT commit without confirmation.
+- Use `AskUserQuestion` to confirm next step. Options, in order:
+  - `Don't commit (Recommended)` — leave the working tree dirty for the user to review.
+  - `Commit only` — local commit, no push.
+  - `Commit & push` — commit and push to `main`.
+
+  Do NOT commit without an explicit selection.
 
 ## Important
 

@@ -45,6 +45,18 @@ Flags:
 
 Output: prints the saved WAV path to stdout.
 
+## Disambiguation before calling
+
+If the user did not name a voice in chat **and** the source-material genre is ambiguous (e.g., a generic paragraph rather than an article body or lesson summary), prompt with a single `AskUserQuestion` before synthesizing — re-running TTS for the wrong voice doubles the call cost.
+
+Options (in order, default first):
+
+- `Achernar (Recommended — warm, neutral)`
+- `Algieba (clear, instructional)`
+- `Aoede (expressive, narrative)`
+
+Skip the prompt when: `--voice` was passed, the persisted config voice fits the genre, or the user said "narrate this article" (Aoede) / "lesson summary" (Algieba).
+
 ## Voice picking
 
 | Voice     | Feel                                                              | Use for                                |
