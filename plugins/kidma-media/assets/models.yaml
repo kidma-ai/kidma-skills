@@ -1,0 +1,100 @@
+# kidma-media — single source of truth for Gemini model IDs.
+#
+# All scripts under `scripts/` read this file via _shared.load_models().
+# No script hardcodes a model ID outside this file. To refresh after Google
+# ships new models, run the `refresh-models` skill (which queries the
+# `gemini-api-docs` MCP and proposes a diff).
+#
+# Current as of 2026-06-06.
+
+defaults:
+  image: gemini-3.1-flash-image           # Nano Banana 2 — fast, default
+  imagen: imagen-4.0-generate-001         # Imagen 4 — photoreal
+  video: veo-3.1-fast-generate-001        # Veo 3.1 fast — upstream-recommended default
+  describe: gemini-3.5-flash              # multimodal understanding / OCR
+  tts: gemini-3.1-flash-tts-preview       # Hebrew text-to-speech
+  tts_voice: Achernar                     # default voice for TTS
+
+image_models:
+  - id: gemini-3.1-flash-image
+    family: nano-banana
+    description: "Nano Banana 2 — fast conversational image gen and editing. Default."
+    supports: [text-to-image, image-edit, multi-ref]
+    aspect_ratios: ["1:1", "16:9", "9:16", "4:3", "3:4", "5:4", "4:5"]
+    sizes: ["1K", "2K"]
+  - id: gemini-3-pro-image
+    family: nano-banana
+    description: "Nano Banana Pro — higher-fidelity. Slower, more expensive."
+    supports: [text-to-image, image-edit, multi-ref]
+    aspect_ratios: ["1:1", "16:9", "9:16", "4:3", "3:4", "5:4", "4:5"]
+    sizes: ["1K", "2K"]
+  - id: imagen-4.0-generate-001
+    family: imagen
+    description: "Imagen 4 — photoreal still images, multiple variants per call."
+    supports: [text-to-image]
+    aspect_ratios: ["1:1", "16:9", "9:16", "4:3", "3:4"]
+    max_count_per_call: 4
+
+video_models:
+  - id: veo-3.1-fast-generate-001
+    family: veo
+    description: "Veo 3.1 fast — default. Lower latency, usually sufficient quality."
+    resolutions: ["720p", "1080p"]
+    duration_seconds: 8
+    supports: [text-to-video, image-to-video]
+  - id: veo-3.1-generate-001
+    family: veo
+    description: "Veo 3.1 standard — higher quality, slower, more expensive."
+    resolutions: ["720p", "1080p"]
+    duration_seconds: 8
+    supports: [text-to-video, image-to-video, video-extension]
+
+# Brand-aligned style presets. `--preset <name>` on generate-image / edit-image
+# expands these into the prompt before the API call. Mirrors what
+# `kidma-marketing:article-image-prompt` emits.
+presets:
+  kidma-warm-documentary:
+    description: "Style A — warm documentary photography of Israeli school context."
+    aspect_ratio: "16:9"
+    image_size: "2K"
+    prompt_prefix: >
+      Documentary editorial photography of an Israeli school setting.
+      Soft natural lighting, candid reportage feel, medium shot, shallow depth of field,
+      warm natural tones. Subject:
+    prompt_suffix: " No text in the image."
+
+  kidma-blue-conceptual:
+    description: "Style B — bold conceptual flat illustration with Kidma blue (#2669F6) — Understand stage."
+    aspect_ratio: "16:9"
+    image_size: "2K"
+    prompt_prefix: >
+      Flat vector editorial illustration. Lead color Kidma blue (#2669F6) on off-white (#F3F3F3) background.
+      Clean minimalist design, generous whitespace, bold composition, visual weight toward the right (RTL-aware). Subject:
+    prompt_suffix: " No text in the image."
+
+  kidma-green-conceptual:
+    description: "Style B variant — Try stage (Kidma light green #93DC88)."
+    aspect_ratio: "16:9"
+    image_size: "2K"
+    prompt_prefix: >
+      Flat vector editorial illustration. Lead color Kidma light green (#93DC88) on off-white (#F3F3F3) background.
+      Clean minimalist design, generous whitespace, bold composition, visual weight toward the right (RTL-aware). Subject:
+    prompt_suffix: " No text in the image."
+
+  kidma-pink-conceptual:
+    description: "Style B variant — Create stage (Kidma pink #FF70A3)."
+    aspect_ratio: "16:9"
+    image_size: "2K"
+    prompt_prefix: >
+      Flat vector editorial illustration. Lead color Kidma pink (#FF70A3) on off-white (#F3F3F3) background.
+      Clean minimalist design, generous whitespace, bold composition, visual weight toward the right (RTL-aware). Subject:
+    prompt_suffix: " No text in the image."
+
+# Voice options for the tts skill. `setup` picks one as the user default.
+tts_voices:
+  - name: Achernar
+    description: "Warm, neutral. Good default."
+  - name: Algieba
+    description: "Clear, instructional. Good for lesson summaries."
+  - name: Aoede
+    description: "Expressive, narrative. Good for articles."

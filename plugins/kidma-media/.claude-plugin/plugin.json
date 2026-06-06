@@ -1,0 +1,13 @@
+{
+  "name": "kidma-media",
+  "version": "1.0.0",
+  "description": "Kidma media generation tools — generate and edit images (Nano Banana, Imagen 4) and videos (Veo 3) via the Gemini API, plus multimodal description and Hebrew TTS. Low-friction setup, single source of truth for current model IDs.",
+  "author": {
+    "name": "Kidma Technologies and Education Ltd.",
+    "email": "kidma2030@gmail.com",
+    "url": "https://kid-ma.com"
+  },
+  "homepage": "https://kid-ma.com",
+  "repository": "https://github.com/kidma-ai/kidma-skills",
+  "keywords": ["gemini", "nano-banana", "imagen", "veo", "image-generation", "video-generation", "tts", "media", "ai"]
+}
