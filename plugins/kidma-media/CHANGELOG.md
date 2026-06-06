@@ -1,5 +1,11 @@
 # Changelog — kidma-media
 
+## 1.1.0 — 2026-06-06
+
+- `generate-image`, `generate-video`, `tts`: prompt the user with `AskUserQuestion` to resolve unpinned axes (preset/model/aspect, resolution/duration, voice) before calling the script. Cheapest/fastest option marked Recommended.
+- `setup`: ask which output directory to use when no env var / config / `/mnt/user-data/outputs` applies, instead of silently falling back.
+- `refresh-models`: structured commit-or-not prompt; default is "Don't commit".
+
 ## 1.0.0 — 2026-06-06
 
 - Initial release.

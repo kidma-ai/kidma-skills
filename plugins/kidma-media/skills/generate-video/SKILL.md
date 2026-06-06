@@ -15,6 +15,19 @@ python_packages:
 
 Submits a Veo request, polls every 15 seconds, downloads the MP4. **Tell the user before running**: "Veo typically takes 45–90 seconds — I'll poll until it's ready."
 
+## Disambiguation before calling
+
+Veo is slow and costly per call — wrong aspect or model means a full re-run. Before invoking, check the request against four axes and resolve unpinned ones in a **single** grouped `AskUserQuestion`. Skip the prompt if all are pinned.
+
+| Axis        | Pinned when…                                  | Ask if ambiguous                                                                  |
+|-------------|-----------------------------------------------|-----------------------------------------------------------------------------------|
+| Model       | User said "best quality" / "standard Veo"     | `veo-3.1-fast (Recommended — ~45s, cheaper)` / `veo-3.1 (slower, sharper)`        |
+| Resolution  | User named a target                           | `720p (Recommended)` / `1080p (higher fidelity, slower)`                          |
+| Aspect      | User named a surface (homepage, reel, square) | `16:9 horizontal (Recommended)` / `9:16 vertical / story` / `1:1 square`          |
+| Duration    | User gave a number, or said "short" / "long"  | `5s (Recommended)` / `3s` / `8s (Veo cap)`                                        |
+
+Defaults marked **Recommended** are the cheapest/fastest. Only ask for axes that are genuinely unresolved.
+
 ## Calling the script
 
 ```bash
