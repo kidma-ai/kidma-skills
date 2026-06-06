@@ -34,7 +34,7 @@ No skill hardcodes a model ID. They read `assets/models.yaml` via `_shared.load_
 ## Models in use (as of 2026-06-06)
 
 - **Images** — `gemini-3.1-flash-image` (Nano Banana 2, default), `gemini-3-pro-image` (Nano Banana Pro), `imagen-4.0-generate-001` (Imagen 4).
-- **Video** — `veo-3.1-fast-generate-001` (default), `veo-3.1-generate-001` (higher quality).
+- **Video** — `veo-3.1-fast-generate-preview` (default), `veo-3.1-generate-preview` (higher quality), `veo-3.1-lite-generate-preview` (cheapest).
 - **Understanding / OCR** — `gemini-3.5-flash`.
 - **TTS** — `gemini-3.1-flash-tts-preview` with voices `Achernar`, `Algieba`, `Aoede`.
 

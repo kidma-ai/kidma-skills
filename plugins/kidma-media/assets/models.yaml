@@ -10,7 +10,7 @@
 defaults:
   image: gemini-3.1-flash-image           # Nano Banana 2 — fast, default
   imagen: imagen-4.0-generate-001         # Imagen 4 — photoreal
-  video: veo-3.1-fast-generate-001        # Veo 3.1 fast — upstream-recommended default
+  video: veo-3.1-fast-generate-preview    # Veo 3.1 fast — upstream-recommended default
   describe: gemini-3.5-flash              # multimodal understanding / OCR
   tts: gemini-3.1-flash-tts-preview       # Hebrew text-to-speech
   tts_voice: Achernar                     # default voice for TTS
@@ -36,18 +36,24 @@ image_models:
     max_count_per_call: 4
 
 video_models:
-  - id: veo-3.1-fast-generate-001
+  - id: veo-3.1-fast-generate-preview
     family: veo
     description: "Veo 3.1 fast — default. Lower latency, usually sufficient quality."
     resolutions: ["720p", "1080p"]
-    duration_seconds: 8
+    durations_seconds: [4, 6, 8]
     supports: [text-to-video, image-to-video]
-  - id: veo-3.1-generate-001
+  - id: veo-3.1-generate-preview
     family: veo
     description: "Veo 3.1 standard — higher quality, slower, more expensive."
-    resolutions: ["720p", "1080p"]
-    duration_seconds: 8
+    resolutions: ["720p", "1080p", "4k"]
+    durations_seconds: [4, 6, 8]
     supports: [text-to-video, image-to-video, video-extension]
+  - id: veo-3.1-lite-generate-preview
+    family: veo
+    description: "Veo 3.1 lite — cheapest Veo 3.1 tier, 720p/1080p, no extension."
+    resolutions: ["720p", "1080p"]
+    durations_seconds: [4, 6, 8]
+    supports: [text-to-video, image-to-video]
 
 # Brand-aligned style presets. `--preset <name>` on generate-image / edit-image
 # expands these into the prompt before the API call. Mirrors what
