@@ -1,25 +1,13 @@
 {
-  "$schema": "https://code.claude.com/schemas/plugin.v2.json",
   "name": "kidma-company",
-  "description": "Kidma company context and brand identity — required by all other Kidma plugins",
-  "version": "1.0.0",
-  "category": "foundation",
-  "tags": ["foundation", "company", "brand", "identity", "context", "kidma"],
+  "version": "1.0.1",
+  "description": "Kidma company context and brand identity — foundation skills referenced by all other Kidma plugins",
   "author": {
     "name": "Kidma Technologies and Education Ltd.",
     "email": "kidma2030@gmail.com",
-    "homepage": "https://kid-ma.com"
+    "url": "https://kid-ma.com"
   },
+  "homepage": "https://kid-ma.com",
   "repository": "https://github.com/kidma-ai/kidma-skills",
-  "dependencies": {
-    "required": [],
-    "optional": []
-  },
-  "skills": [
-    { "name": "overview", "file": "./skills/overview.md", "type": "reference" },
-    { "name": "brand",    "file": "./skills/brand.md",    "type": "reference" }
-  ],
-  "changelog": [
-    { "version": "1.0.0", "date": "2026-01-15", "notes": "Initial release — company overview and brand guidelines" }
-  ]
+  "keywords": ["foundation", "company", "brand", "identity", "context", "kidma"]
 }
