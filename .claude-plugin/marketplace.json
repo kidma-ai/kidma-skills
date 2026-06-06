@@ -3,11 +3,11 @@
   "name": "kidma-plugins",
   "description": "Official Kidma plugin library for Claude Code — lesson planning, presentations, and brand assets for Kidma educators",
   "version": "2.0.0",
-  "repository": "https://github.com/kidma2030/kidma-skills",
+  "repository": "https://github.com/kidma-ai/kidma-skills",
   "owner": {
     "name": "Kidma Technologies and Education Ltd.",
     "email": "kidma2030@gmail.com",
-    "homepage": "https://kid-ma.com"
+    "homepage": "https://www.kid-ma.com"
   },
   "plugins": [
     { "name": "kidma-company",   "source": "./plugins/kidma-company" },
