@@ -150,7 +150,20 @@ def preflight() -> None:
         sys.exit(2)
 
 
+_CLIENT = None
+
+
 def client():
-    """Return a configured google.genai Client. Honors GEMINI_API_KEY automatically."""
-    from google import genai
-    return genai.Client()
+    """Return a configured google.genai Client. Honors GEMINI_API_KEY automatically.
+
+    Cached at module scope so the Client outlives any single call expression.
+    Without this, a chained `client().models.generate_content(...)` can release
+    the temporary Client mid-request; its __del__ closes the underlying httpx
+    pool, and the in-flight tenacity retry then raises "Cannot send a request,
+    as the client has been closed."
+    """
+    global _CLIENT
+    if _CLIENT is None:
+        from google import genai
+        _CLIENT = genai.Client()
+    return _CLIENT
