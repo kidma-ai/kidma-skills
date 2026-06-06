@@ -6,7 +6,7 @@ Async pattern: submit → poll `operation.done` → download MP4.
 Usage:
     python generate_video.py --prompt "..." [--model ID]
                              [--resolution 720p|1080p] [--aspect 16:9]
-                             [--duration 5] [--image PATH] [--out PATH]
+                             [--duration 4|6|8] [--image PATH] [--out PATH]
 """
 
 from __future__ import annotations
@@ -35,7 +35,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--model", help="Override the default Veo model ID")
     p.add_argument("--resolution", choices=["720p", "1080p"], default="720p")
     p.add_argument("--aspect", default="16:9", help="Aspect ratio (16:9, 9:16, 1:1)")
-    p.add_argument("--duration", type=int, default=5, help="Duration in seconds (Veo caps at 8)")
+    p.add_argument("--duration", type=int, choices=[4, 6, 8], default=4,
+                   help="Duration in seconds (Veo 3.1 accepts 4, 6, or 8 only)")
     p.add_argument("--image", help="Optional starting image (path) for image-to-video")
     p.add_argument("--out", help="Output path. Default: auto-named .mp4 under output dir.")
     return p.parse_args()
@@ -48,12 +49,12 @@ def main() -> int:
     from google.genai import types
     from PIL import Image
 
-    model = args.model or load_models().get("defaults", {}).get("video", "veo-3.1-fast-generate-001")
+    model = args.model or load_models().get("defaults", {}).get("video", "veo-3.1-fast-generate-preview")
 
     cfg_kwargs = {
         "aspect_ratio": args.aspect,
         "number_of_videos": 1,
-        "duration_seconds": max(1, min(args.duration, 8)),
+        "duration_seconds": args.duration,
         "resolution": args.resolution,
     }
 
@@ -98,9 +99,9 @@ def main() -> int:
 
     video_obj = videos[0].video
     try:
-        c.files.download(file=video_obj, download_path=str(target))
+        c.files.download(file=video_obj)
+        video_obj.save(str(target))
     except Exception as e:  # noqa: BLE001
-        # Fallback: some SDK versions expose the bytes directly
         data = getattr(video_obj, "video_bytes", None)
         if data:
             if isinstance(data, str):
