@@ -11,8 +11,8 @@ A **Claude Code plugin marketplace** (not an app). It publishes skills that othe
 Three layers, top-down:
 
 1. **`.claude-plugin/marketplace.json`** — the catalog. Lists the plugins exposed by this repo and defines `bundles` (named pipelines that chain skills across plugins, e.g. `kidma-lesson-full`: `lesson-planner` → `lesson-to-word` → `lesson-exercise`).
-2. **`plugins/<plugin-name>/.claude-plugin/plugin.json`** — one per plugin. Declares `dependencies` (every content plugin requires `kidma-company`), lists `skills` with their I/O contract, and tracks `changelog` + `version`.
-3. **`plugins/<plugin-name>/skills/<skill>.md`** — the actual skill. YAML frontmatter (`description`, `type`, `depends_on`, `invokes`, `input_*`/`output_*`) followed by the prompt body that Claude follows when the skill is invoked.
+2. **`plugins/<plugin-name>/.claude-plugin/plugin.json`** — one per plugin. **Must conform to Claude Code's plugin manifest schema** (`name`, `version`, `description`, `author`, `homepage`, `repository`, `keywords`). Validate with `claude plugin validate plugins/<name>/`. Don't add custom fields like `dependencies` (object form), `skills` (array form), `category`, `tags`, `changelog`, or `$schema` — the live validator rejects them even though the public docs hint otherwise. Per-plugin `CHANGELOG.md` lives at the plugin root instead.
+3. **`plugins/<plugin-name>/skills/<skill>/SKILL.md`** — the actual skill. Must be a directory containing `SKILL.md`; flat `skills/<skill>.md` files are not discovered. YAML frontmatter (`description`, plus repo-internal hints like `type`, `depends_on`, `invokes`, `input_*`/`output_*` which are documentation only) followed by the prompt body that Claude follows when the skill is invoked. Inside a skill, refer to plugin-root resources via `${CLAUDE_PLUGIN_ROOT}/assets/...`, `${CLAUDE_PLUGIN_ROOT}/scripts/...`, etc. — never relative paths, since the skill now lives one level deeper than the plugin root.
 
 Current plugin set (3 domain plugins, restructured in commit `c039e89` from 8 micro-plugins — **the README still describes the old 8-plugin layout and is stale**):
 

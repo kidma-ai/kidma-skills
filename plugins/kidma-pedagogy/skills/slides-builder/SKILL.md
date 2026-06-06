@@ -27,7 +27,7 @@ Before starting, **always read these skills:**
 - `the pptx editing reference` — for the template-based editing workflow
 - `kidma-plugins:brand skill` — for Kidma's official colors, typography, logo variants, and light/dark mode rules. Use when adding new slides, picking accent colors, or inserting logos beyond what the template provides.
 
-The Kidma template is at: `assets/template.pptx` (relative to this skill's directory)
+The Kidma template is at: `${CLAUDE_PLUGIN_ROOT}/assets/template.pptx`
 
 ---
 
@@ -52,7 +52,7 @@ Follow the **pptx editing workflow** from `the pptx editing reference`:
 ### 2.1 Copy and Unpack
 
 ```bash
-cp <skill-path>/assets/template.pptx /home/claude/template.pptx
+cp ${CLAUDE_PLUGIN_ROOT}/assets/template.pptx /home/claude/template.pptx
 python /mnt/skills/public/pptx/scripts/office/unpack.py /home/claude/template.pptx /home/claude/unpacked/
 ```
 
