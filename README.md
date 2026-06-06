@@ -14,6 +14,7 @@
 # Install the plugins you want
 /plugin install kidma-pedagogy@kidma-plugins
 /plugin install kidma-marketing@kidma-plugins
+/plugin install kidma-media@kidma-plugins
 
 # Invoke a skill
 /kidma-pedagogy:lesson-planner
@@ -23,7 +24,7 @@
 
 ## Plugins
 
-Three domain plugins, ten skills total.
+Four domain plugins, seventeen skills total.
 
 ### 🏢 `kidma-company` — foundation, install first
 
@@ -51,6 +52,20 @@ Reference skills used as context by every other plugin.
 |-------|---------|
 | `write-article` | Draft a complete Hebrew article (frontmatter + Markdown body) for kid-ma.com, newsletters, or school proposals |
 | `article-image-prompt` | Generate Nano Banana image prompts (documentary + conceptual styles) for an article |
+
+### 🎨 `kidma-media` — Gemini image, video, and audio generation
+
+Requires `GEMINI_API_KEY`. Run `setup` once before the action skills.
+
+| Skill | Purpose |
+|-------|---------|
+| `setup` | One-time setup — checks Python deps, `GEMINI_API_KEY`, output dir, and pings the API |
+| `generate-image` | Generate an image via Nano Banana 2 or Imagen 4, with Kidma brand presets |
+| `edit-image` | Edit an existing image with a natural-language instruction (Nano Banana 2) |
+| `describe-image` | Describe / OCR / caption an image via Gemini multimodal (Hebrew RTL preserved) |
+| `generate-video` | Generate a short (≤8s) video via Veo 3 — text-to-video or image-to-video |
+| `tts` | Synthesize Hebrew (or any language) speech via Gemini TTS — 24 kHz mono WAV |
+| `refresh-models` | Refresh `assets/models.yaml` against the live Gemini docs MCP server |
 
 ---
 
@@ -85,7 +100,8 @@ Add this to `.claude/settings.json` in your project so everyone on the team gets
   "enabledPlugins": {
     "kidma-company@kidma-plugins": true,
     "kidma-pedagogy@kidma-plugins": true,
-    "kidma-marketing@kidma-plugins": true
+    "kidma-marketing@kidma-plugins": true,
+    "kidma-media@kidma-plugins": true
   }
 }
 ```
@@ -119,11 +135,23 @@ kidma-skills/
 │   │   ├── schemas/
 │   │   ├── scripts/build_lesson.py
 │   │   └── assets/{template.docx, template.pptx}
-│   └── kidma-marketing/
+│   ├── kidma-marketing/
+│   │   ├── .claude-plugin/plugin.json
+│   │   └── skills/
+│   │       ├── write-article/SKILL.md
+│   │       └── article-image-prompt/SKILL.md
+│   └── kidma-media/
 │       ├── .claude-plugin/plugin.json
-│       └── skills/
-│           ├── write-article/SKILL.md
-│           └── article-image-prompt/SKILL.md
+│       ├── skills/
+│       │   ├── setup/SKILL.md
+│       │   ├── generate-image/SKILL.md
+│       │   ├── edit-image/SKILL.md
+│       │   ├── describe-image/SKILL.md
+│       │   ├── generate-video/SKILL.md
+│       │   ├── tts/SKILL.md
+│       │   └── refresh-models/SKILL.md
+│       ├── scripts/
+│       └── assets/models.yaml
 ├── CLAUDE.md
 └── README.md
 ```
