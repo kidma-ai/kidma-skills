@@ -1,83 +1,76 @@
 # ⚡ Kidma Plugin Marketplace
 
-> Official Kidma plugin library for **Claude Code** — lesson planning, presentations, brand assets, and content drafting.
+> Official Kidma plugin library for **Claude Code** — lesson planning, presentations, brand assets, and content drafting in Hebrew.
 
 ## Quick Start
 
 ```bash
-# Add the marketplace (replace YOUR_ORG with your GitHub org/user)
-/plugin marketplace add YOUR_ORG/kidma-skills
+# Add the marketplace
+/plugin marketplace add kidma-ai/kidma-skills
 
-# Install all foundation plugins (required by other plugins)
-/plugin install kidma-company-overview@kidma-plugins
-/plugin install kidma-brand-guidelines@kidma-plugins
+# Install the foundation plugin (required by the other two)
+/plugin install kidma-company@kidma-plugins
 
-# Install lesson planning plugins
-/plugin install kidma-lesson-generator@kidma-plugins
-/plugin install kidma-lesson-docx@kidma-plugins
+# Install the plugins you want
+/plugin install kidma-pedagogy@kidma-plugins
+/plugin install kidma-marketing@kidma-plugins
 
-# Use a skill
-/kidma-lesson-generator:kidma-lesson-generator
+# Invoke a skill
+/kidma-pedagogy:lesson-planner
 ```
 
 ---
 
-## Available Plugins
+## Plugins
 
-### 🏢 Foundation — install these first
+Three domain plugins, ten skills total.
 
-| Plugin | Description |
-|--------|-------------|
-| `kidma-company-overview` | Full Kidma company context — programs, metrics, history |
-| `kidma-brand-guidelines` | Official brand styling — colors, typography, logos, assets |
+### 🏢 `kidma-company` — foundation, install first
 
-### 📚 Lessons
+Reference skills used as context by every other plugin.
 
-| Plugin | Description |
-|--------|-------------|
-| `kidma-lesson-generator` | Generate complete lesson plans (Understand → Try → Create) |
-| `kidma-lesson-docx` | Export lesson plan to branded Word document |
-| `kidma-lesson-extractor` | Extract content from existing Kidma lesson materials |
-| `kidma-lesson-summary` | Generate PDF lesson summary for students |
+| Skill | Purpose |
+|-------|---------|
+| `overview` | Full Kidma company context — programs, audience, partners, vision |
+| `brand` | Brand styling — colors, typography, logos, methodology code |
 
-### 🎨 Presentations
+### 📚 `kidma-pedagogy` — lesson + presentation authoring
 
-| Plugin | Description |
-|--------|-------------|
-| `kidma-presentation-planner` | Plan slides interactively with step-by-step approval |
-| `kidma-presentation-builder` | Build PPTX file from an approved slide plan |
+| Skill | Purpose |
+|-------|---------|
+| `lesson-planner` | Interactively plan a Kidma lesson plan (Understand → Try → Create), output structured JSON |
+| `lesson-to-word` | Build a branded `.docx` from the planner's JSON |
+| `lesson-exercise` | Build a student exercise/summary `.pdf` from the planner's JSON |
+| `slides-planner` | Interactively plan a slide deck for a Kidma lesson, output approved slide list |
+| `slides-builder` | Build the branded `.pptx` from the approved slide plan |
+| `structure-lesson-content` | Extract and structure content from existing Kidma lesson materials |
 
-### ✍️ Content
+### ✍️ `kidma-marketing` — Hebrew article authoring
 
-| Plugin | Description |
-|--------|-------------|
-| `kidma-write-article` | Draft a complete Hebrew article (frontmatter + Markdown body) for any Kidma writing surface |
-
----
-
-## Recommended Pipelines
-
-**New lesson → Word doc:**
-```
-kidma-lesson-generator  →  kidma-lesson-docx
-```
-
-**New presentation:**
-```
-kidma-presentation-planner  →  kidma-presentation-builder
-```
-
-**New article for kidma-site:**
-```
-kidma-write-article  →  publish-article  (project-local in kidma-site repo)
-```
-The publisher half lives in `kidma-site/.claude/skills/publish-article/` — it's a project-local skill, not installed via this marketplace. It picks up the `.md` produced by `kidma-write-article` and turns it into an MDX file + PR.
+| Skill | Purpose |
+|-------|---------|
+| `write-article` | Draft a complete Hebrew article (frontmatter + Markdown body) for kid-ma.com, newsletters, or school proposals |
+| `article-image-prompt` | Generate Nano Banana image prompts (documentary + conceptual styles) for an article |
 
 ---
 
-## Team Setup — Auto-install via project settings
+## Bundles (recommended pipelines)
 
-Add this to `.claude/settings.json` in your project so the marketplace is available to everyone on the team automatically:
+The marketplace defines named bundles that chain skills end-to-end. See `.claude-plugin/marketplace.json` for the full spec.
+
+| Bundle | Flow |
+|--------|------|
+| `kidma-lesson-full` | `lesson-planner` → `lesson-to-word` → `lesson-exercise` — blank topic to branded `.docx` + student exercise `.pdf` |
+| `kidma-presentation-full` | `slides-planner` → `slides-builder` — lesson content to branded `.pptx` |
+| `kidma-article-full` | `write-article` → `article-image-prompt` — topic brief to article draft + matching image prompts |
+
+**Article publishing:** `write-article` produces an `.md` block in chat. To publish to kid-ma.com, the project-local `publish-article` skill in the `kidma-site` repo picks it up and turns it into an MDX file + PR.
+
+---
+
+## Team Setup — auto-install via project settings
+
+Add this to `.claude/settings.json` in your project so everyone on the team gets the marketplace and the plugins automatically:
 
 ```json
 {
@@ -85,78 +78,68 @@ Add this to `.claude/settings.json` in your project so the marketplace is availa
     "kidma-plugins": {
       "source": {
         "source": "github",
-        "repo": "YOUR_ORG/kidma-skills"
+        "repo": "kidma-ai/kidma-skills"
       }
     }
   },
   "enabledPlugins": {
-    "kidma-company-overview@kidma-plugins": true,
-    "kidma-brand-guidelines@kidma-plugins": true,
-    "kidma-lesson-generator@kidma-plugins": true,
-    "kidma-lesson-docx@kidma-plugins": true,
-    "kidma-presentation-planner@kidma-plugins": true,
-    "kidma-presentation-builder@kidma-plugins": true
+    "kidma-company@kidma-plugins": true,
+    "kidma-pedagogy@kidma-plugins": true,
+    "kidma-marketing@kidma-plugins": true
   }
 }
 ```
 
 ---
 
-## Repository Structure
+## Repository structure
 
 ```
 kidma-skills/
 ├── .claude-plugin/
-│   └── marketplace.json              ← Marketplace catalog (required)
+│   └── marketplace.json              ← Catalog + bundle definitions
 ├── plugins/
-│   ├── kidma-company-overview/
+│   ├── kidma-company/
 │   │   ├── .claude-plugin/plugin.json
-│   │   ├── skills/kidma-company-overview/SKILL.md
-│   │   └── references/full-context.md
-│   ├── kidma-brand-guidelines/
-│   │   ├── .claude-plugin/plugin.json
-│   │   ├── skills/kidma-brand-guidelines/SKILL.md
+│   │   ├── skills/
+│   │   │   ├── overview/SKILL.md
+│   │   │   └── brand/SKILL.md
+│   │   ├── references/full-context.md
 │   │   └── assets/logo_*.png
-│   ├── kidma-lesson-generator/
+│   ├── kidma-pedagogy/
 │   │   ├── .claude-plugin/plugin.json
-│   │   ├── skills/kidma-lesson-generator/SKILL.md
-│   │   └── references/deep-dive.md
-│   ├── kidma-lesson-docx/
-│   │   ├── .claude-plugin/plugin.json
-│   │   ├── skills/kidma-lesson-docx/SKILL.md
-│   │   ├── assets/template.docx
-│   │   └── scripts/build_lesson.py
-│   ├── kidma-lesson-extractor/
-│   │   ├── .claude-plugin/plugin.json
-│   │   ├── skills/kidma-lesson-extractor/SKILL.md
-│   │   └── references/output-template.md
-│   ├── kidma-lesson-summary/
-│   │   ├── .claude-plugin/plugin.json
-│   │   └── skills/kidma-lesson-summary/SKILL.md
-│   ├── kidma-presentation-planner/
-│   │   ├── .claude-plugin/plugin.json
-│   │   ├── skills/kidma-presentation-planner/SKILL.md
-│   │   └── references/slide-types.md
-│   ├── kidma-presentation-builder/
-│   │   ├── .claude-plugin/plugin.json
-│   │   ├── skills/kidma-presentation-builder/SKILL.md
-│   │   ├── assets/template.pptx
-│   │   └── references/slide-catalog.md
-│   └── kidma-write-article/
+│   │   ├── skills/
+│   │   │   ├── lesson-planner/SKILL.md
+│   │   │   ├── lesson-to-word/SKILL.md
+│   │   │   ├── lesson-exercise/SKILL.md
+│   │   │   ├── slides-planner/SKILL.md
+│   │   │   ├── slides-builder/SKILL.md
+│   │   │   └── structure-lesson-content/SKILL.md
+│   │   ├── references/
+│   │   ├── schemas/
+│   │   ├── scripts/build_lesson.py
+│   │   └── assets/{template.docx, template.pptx}
+│   └── kidma-marketing/
 │       ├── .claude-plugin/plugin.json
-│       └── skills/kidma-write-article/SKILL.md
+│       └── skills/
+│           ├── write-article/SKILL.md
+│           └── article-image-prompt/SKILL.md
+├── CLAUDE.md
 └── README.md
 ```
 
 ---
 
-## Releasing Updates
+## Releasing updates
 
-1. Edit the plugin files
-2. Bump `"version"` in the plugin's `.claude-plugin/plugin.json`
-3. Push to GitHub
+1. Edit the plugin / skill files.
+2. Bump `"version"` in the relevant `plugins/<name>/.claude-plugin/plugin.json` and add an entry to the plugin's `CHANGELOG.md`.
+3. If the marketplace surface changes (new plugin, renamed plugin, new bundle), also bump `"version"` in `.claude-plugin/marketplace.json`.
+4. Validate: `python3 -c "import json; json.load(open('.claude-plugin/marketplace.json'))"` and `claude plugin validate plugins/<name>/`.
+5. Push to GitHub.
 
 Users update with:
+
 ```bash
 /plugin marketplace update kidma-plugins
 ```
