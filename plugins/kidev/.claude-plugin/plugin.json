@@ -1,0 +1,13 @@
+{
+  "name": "kidev",
+  "version": "1.0.0",
+  "description": "Developer git workflow automation — full save-and-ship cycle from a dirty working tree to a merged main branch (branch, commit, push, PR, merge).",
+  "author": {
+    "name": "Kidma Technologies and Education Ltd.",
+    "email": "kidma2030@gmail.com",
+    "url": "https://kid-ma.com"
+  },
+  "homepage": "https://kid-ma.com",
+  "repository": "https://github.com/kidma-ai/kidma-skills",
+  "keywords": ["git", "github", "pull-request", "ci-cd", "workflow", "automation", "developer-tools"]
+}
