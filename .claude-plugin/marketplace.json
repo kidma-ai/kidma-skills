@@ -1,7 +1,7 @@
 {
   "$schema": "https://code.claude.com/schemas/marketplace.v2.json",
   "name": "kidma-plugins",
-  "description": "Official Kidma plugin library for Claude Code — lesson planning, presentations, and brand assets for Kidma educators",
+  "description": "Official Kidma plugin library for Claude Code — lesson planning, presentations, brand assets, and media generation for Kidma educators, plus developer git workflow tooling",
   "version": "2.2.0",
   "repository": "https://github.com/kidma-ai/kidma-skills",
   "owner": {

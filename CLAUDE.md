@@ -14,11 +14,13 @@ Three layers, top-down:
 2. **`plugins/<plugin-name>/.claude-plugin/plugin.json`** — one per plugin. **Must conform to Claude Code's plugin manifest schema** (`name`, `version`, `description`, `author`, `homepage`, `repository`, `keywords`). Validate with `claude plugin validate plugins/<name>/`. Don't add custom fields like `dependencies` (object form), `skills` (array form), `category`, `tags`, `changelog`, or `$schema` — the live validator rejects them even though the public docs hint otherwise. Per-plugin `CHANGELOG.md` lives at the plugin root instead.
 3. **`plugins/<plugin-name>/skills/<skill>/SKILL.md`** — the actual skill. Must be a directory containing `SKILL.md`; flat `skills/<skill>.md` files are not discovered. YAML frontmatter (`description`, plus repo-internal hints like `type`, `depends_on`, `invokes`, `input_*`/`output_*` which are documentation only) followed by the prompt body that Claude follows when the skill is invoked. Inside a skill, refer to plugin-root resources via `${CLAUDE_PLUGIN_ROOT}/assets/...`, `${CLAUDE_PLUGIN_ROOT}/scripts/...`, etc. — never relative paths, since the skill now lives one level deeper than the plugin root.
 
-Current plugin set (3 domain plugins, restructured in commit `c039e89` from 8 micro-plugins — **the README still describes the old 8-plugin layout and is stale**):
+Current plugin set (5 plugins; restructured in commit `c039e89` from 8 micro-plugins into the 4 Kidma-content plugins, `kidev` added later as generic tooling):
 
-- `kidma-company` — foundation. `overview` + `brand` reference skills. Required by both other plugins.
+- `kidma-company` — foundation. `overview` + `brand` reference skills. Required by every content-producing plugin below.
 - `kidma-pedagogy` — lesson + presentation authoring. 6 skills forming two pipelines (lesson and slides).
 - `kidma-marketing` — Hebrew article drafting + image-prompt generation.
+- `kidma-media` — Gemini image/video/audio generation (Nano Banana, Imagen, Veo, TTS).
+- `kidev` — developer git workflow tooling (`publish_code`). Not Kidma-content-specific; no dependency on `kidma-company`.
 
 ### Skill pipeline convention
 
@@ -45,8 +47,21 @@ Output is Hebrew, right-to-left. The DOCX/PPTX templates encode RTL paragraph pr
 
 No CI runs on this repo. Validation is "does the JSON parse and does the skill behave when installed."
 
+### Adding a new plugin — checklist
+
+Twice now a new plugin (`kidma-media`, then `kidev`) shipped with `marketplace.json` updated but `README.md` forgotten, requiring a follow-up fix commit. Every new plugin touches **both** files — go through this list, don't stop at `marketplace.json`:
+
+- [ ] `.claude-plugin/marketplace.json` — add `{ "name", "source" }` to `plugins`, bump top-level `version`, and update the top-level `description` if the new plugin adds a new category of capability (e.g. dev tooling vs. Kidma content).
+- [ ] `README.md` — every one of these, not just one:
+  - [ ] `Quick Start` install command
+  - [ ] A new `## Plugins` subsection with its skill table
+  - [ ] The "N domain plugins, M skills total" count line
+  - [ ] `Repository structure` tree
+  - [ ] `Team Setup` → `enabledPlugins` block
+- [ ] `plugins/<name>/CHANGELOG.md` and `plugins/<name>/README.md` for the new plugin itself.
+- [ ] This file (`CLAUDE.md`) — the "Current plugin set" list above, if the new plugin doesn't fit the existing pattern (e.g. no `kidma-company` dependency).
+
 ## Notes for editing
 
-- `README.md` documents the **old** 8-plugin structure (`kidma-lesson-generator`, `kidma-presentation-planner`, etc.). The real plugins are the 3 in `plugins/`. Update the README opportunistically when touching nearby content; don't trust it as a source of truth.
 - `marketplace.json` must be strict JSON — Claude Code's marketplace parser rejects trailing commas. Validate with `python3 -c "import json; json.load(open('.claude-plugin/marketplace.json'))"` before pushing.
 - Skill `description` fields are long and trigger-rich on purpose: Claude Code uses them to decide when to invoke the skill, so keep them keyword-dense and include the Hebrew phrasings (`מערך שיעור`, `מצגת`) that users actually type.
