@@ -16,6 +16,9 @@
 /plugin install kidma-marketing@kidma-plugins
 /plugin install kidma-media@kidma-plugins
 
+# Optional: developer git workflow tooling (no Kidma-content dependency)
+/plugin install kidev@kidma-plugins
+
 # Invoke a skill
 /kidma-pedagogy:lesson-planner
 ```
@@ -24,7 +27,7 @@
 
 ## Plugins
 
-Four domain plugins, seventeen skills total.
+Four Kidma domain plugins plus one developer tooling plugin, eighteen skills total.
 
 ### 🏢 `kidma-company` — foundation, install first
 
@@ -67,6 +70,14 @@ Requires `GEMINI_API_KEY`. Run `setup` once before the action skills.
 | `tts` | Synthesize Hebrew (or any language) speech via Gemini TTS — 24 kHz mono WAV |
 | `refresh-models` | Refresh `assets/models.yaml` against the live Gemini docs MCP server |
 
+### 🔧 `kidev` — developer git workflow automation
+
+Not Kidma-content-specific — generic tooling for any repo. No dependency on `kidma-company`.
+
+| Skill | Purpose |
+|-------|---------|
+| `publish_code` | Full save-and-ship cycle — branch, commit, push, open a PR, squash-merge it, then back to main + pull |
+
 ---
 
 ## Bundles (recommended pipelines)
@@ -101,7 +112,8 @@ Add this to `.claude/settings.json` in your project so everyone on the team gets
     "kidma-company@kidma-plugins": true,
     "kidma-pedagogy@kidma-plugins": true,
     "kidma-marketing@kidma-plugins": true,
-    "kidma-media@kidma-plugins": true
+    "kidma-media@kidma-plugins": true,
+    "kidev@kidma-plugins": true
   }
 }
 ```
@@ -140,18 +152,22 @@ kidma-skills/
 │   │   └── skills/
 │   │       ├── write-article/SKILL.md
 │   │       └── article-image-prompt/SKILL.md
-│   └── kidma-media/
+│   ├── kidma-media/
+│   │   ├── .claude-plugin/plugin.json
+│   │   ├── skills/
+│   │   │   ├── setup/SKILL.md
+│   │   │   ├── generate-image/SKILL.md
+│   │   │   ├── edit-image/SKILL.md
+│   │   │   ├── describe-image/SKILL.md
+│   │   │   ├── generate-video/SKILL.md
+│   │   │   ├── tts/SKILL.md
+│   │   │   └── refresh-models/SKILL.md
+│   │   ├── scripts/
+│   │   └── assets/models.yaml
+│   └── kidev/
 │       ├── .claude-plugin/plugin.json
-│       ├── skills/
-│       │   ├── setup/SKILL.md
-│       │   ├── generate-image/SKILL.md
-│       │   ├── edit-image/SKILL.md
-│       │   ├── describe-image/SKILL.md
-│       │   ├── generate-video/SKILL.md
-│       │   ├── tts/SKILL.md
-│       │   └── refresh-models/SKILL.md
-│       ├── scripts/
-│       └── assets/models.yaml
+│       └── skills/
+│           └── publish_code/SKILL.md
 ├── CLAUDE.md
 └── README.md
 ```
