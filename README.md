@@ -27,7 +27,7 @@
 
 ## Plugins
 
-Four Kidma domain plugins plus one developer tooling plugin, eighteen skills total.
+Four Kidma domain plugins plus one developer tooling plugin, nineteen skills total.
 
 ### 🏢 `kidma-company` — foundation, install first
 
@@ -49,12 +49,13 @@ Reference skills used as context by every other plugin.
 | `slides-builder` | Build the branded `.pptx` from the approved slide plan |
 | `structure-lesson-content` | Extract and structure content from existing Kidma lesson materials |
 
-### ✍️ `kidma-marketing` — Hebrew article authoring
+### ✍️ `kidma-marketing` — Hebrew article authoring & promotion
 
 | Skill | Purpose |
 |-------|---------|
 | `write-article` | Draft a complete Hebrew article (frontmatter + Markdown body) for kid-ma.com, newsletters, or school proposals |
 | `article-image-prompt` | Generate Nano Banana image prompts (documentary + conceptual styles) for an article |
+| `facebook-post` | Write three Hebrew Facebook post variants promoting a published article, plus a publishing checklist |
 
 ### 🎨 `kidma-media` — Gemini image, video, and audio generation
 
@@ -151,7 +152,8 @@ kidma-skills/
 │   │   ├── .claude-plugin/plugin.json
 │   │   └── skills/
 │   │       ├── write-article/SKILL.md
-│   │       └── article-image-prompt/SKILL.md
+│   │       ├── article-image-prompt/SKILL.md
+│   │       └── facebook-post/SKILL.md
 │   ├── kidma-media/
 │   │   ├── .claude-plugin/plugin.json
 │   │   ├── skills/

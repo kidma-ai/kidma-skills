@@ -1,7 +1,7 @@
 {
   "name": "kidma-marketing",
-  "version": "1.1.1",
-  "description": "Kidma outreach and communication tools — Hebrew article drafting and image-prompt generation for the Kidma writing surfaces",
+  "version": "1.2.0",
+  "description": "Kidma outreach and communication tools — Hebrew article drafting, image-prompt generation, and Facebook post writing for the Kidma writing surfaces",
   "author": {
     "name": "Kidma Technologies and Education Ltd.",
     "email": "kidma2030@gmail.com",
@@ -9,5 +9,5 @@
   },
   "homepage": "https://kid-ma.com",
   "repository": "https://github.com/kidma-ai/kidma-skills",
-  "keywords": ["marketing", "outreach", "newsletter", "articles", "hebrew", "image-prompts"]
+  "keywords": ["marketing", "outreach", "newsletter", "articles", "hebrew", "image-prompts", "facebook", "social-media"]
 }
