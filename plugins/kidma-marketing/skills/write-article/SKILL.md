@@ -80,6 +80,8 @@ Use `##` for the 4–5 section headings. Use `###` sparingly for sub-points. **N
 
 Don't pad. Better short and dense than long and thin. If you can't reach the target length without filler, ask the human for more material.
 
+**Leave promotion hooks in the prose.** After publication, the `facebook-post` skill mines the article for social hooks: a concrete number or before/after observation (insight hook), a specific human moment or quotable line (story hook), and the question the reader is already asking themselves (pain-point hook). An article containing none of these is hard to promote. Don't force them — the "what it looks like in practice" section is their natural home — but make sure at least a concrete observation and one specific field moment exist somewhere in the body.
+
 ## 4. Images
 
 Reference images by descriptive filename without path prefixes — the publisher will resolve and colocate them:
@@ -92,6 +94,7 @@ Reference images by descriptive filename without path prefixes — the publisher
 - **Do not generate AI images for articles.** Kidma reserves AI-generated cinematic photography for one specific surface (the home hero); everywhere else uses real photography or flat-vector illustration.
 - **Do not pull stock photos** without the human's approval (licensing risk).
 - The hero image goes in the frontmatter (`heroDescription`), not the body — describe what it should depict and the publisher will prompt the human for the actual file.
+- The hero image doubles as the social link-preview image (Open Graph card) when the article is shared on Facebook or LinkedIn. Describe a scene that reads clearly in a 1200×630 landscape crop — main subject centered, no critical detail near the edges, no text baked into the image.
 
 ## 5. Output contract
 
@@ -114,8 +117,8 @@ lengthTarget: medium
 ````
 
 **Frontmatter field rules:**
-- `title`: 30–80 Hebrew characters. Don't end with a period. Em-dash (`—`) OK.
-- `excerpt`: 90–180 Hebrew characters. One sentence. Ends with a period or question mark. Will be used as both meta description and listing-card body — write for both.
+- `title`: 30–80 Hebrew characters. Don't end with a period. Em-dash (`—`) OK. Social link previews truncate titles around ~60 characters — front-load the core meaning so a truncated title still lands.
+- `excerpt`: 90–180 Hebrew characters. One sentence. Ends with a period or question mark. Used as meta description, listing-card body, *and* the social link-preview description when the article is shared — write for all three: add the reason to read, don't restate the title.
 - `date`: ISO `YYYY-MM-DD`. Use the planned publish date, not the drafting date.
 - `category`: exactly one of the four Hebrew options.
 - `suggestedAccent`: one of `blue`, `green`, `pink`. Match the article's *intent* (Understand=blue, Try=green, Create=pink), not the category. Pink is rare — only when the piece is genuinely about creating/making. The publisher may override.
@@ -181,3 +184,4 @@ That's the entire shape. Everything else is judgment.
 - **`kidma-plugins:overview`** — Required. Company facts, audience, programs, partners.
 - **`kidma-plugins:brand`** — Required. Brand colors, methodology code, slogan rules.
 - **`publish-article`** (project-local in kidma-site) — Consumes this skill's output and embeds it into the kidma-site `/articles` route. Handles slug, hero image, MDX transform, branch + PR.
+- **`kidma-plugins:facebook-post`** — Promotes the published article on Facebook. Mines the body for hooks and relies on `title`, `excerpt`, and the hero image rendering well as a link-preview card — the promotion-facing rules above (§3 hooks, §4 hero crop, §5 title/excerpt) exist for its benefit.
