@@ -1,18 +1,19 @@
 # Kidma — Full Company Context for OpenClaw Agent
 
 > **Sources:** Kidma Google Drive (lesson plans, contracts, syllabi, portal documentation), MindCET Accelerator Pitch Deck (2025, presented by Adar Frenkel).
-> **Last updated:** March 2026
+> **Last updated:** July 2026
 
 ## 1. Company Overview
 
 **Kidma Technologies and Education Ltd.** (קידמה טכנולוגיות וחינוך בע"מ) is an Israeli EdTech company — an AI learning platform that helps classrooms learn more effectively, enabling teachers to focus on teaching and students to focus on learning.
 
 - **Registration:** 516940954
-- **Address:** Eshkolit 5, Yavne, Israel
+- **Address:** Eshkolit 5, Yavne, Israel (registered office; public base listed as Tel Aviv)
 - **Founders:** Adar Frenkel (Technology) & Almog Tayar (Pedagogy & Product)
-- **Contact:** kidma2030@gmail.com | Domain: kid-ma.com
-- **Stage:** Bootstrapped, profitable, pre-funding (Year 3)
-- **Tagline:** Learn. Try. Create.
+- **Contact:** hello@kid-ma.com | WhatsApp/phone: 053-934-9394 | Booking: https://cal.com/kid-ma/20min | Domain: kid-ma.com
+- **Social:** Instagram @kidma_ai | Facebook /kidmaai
+- **Stage:** Bootstrapped, profitable, pre-funding
+- **Tagline:** מבינים. מנסים. יוצרים. (Understand. Try. Create.)
 - **Unique Angle:** "An AI system that teaches AI" — the platform uses AI to teach students about AI
 
 ### Mission
@@ -25,7 +26,10 @@ Kidma's mission is to **teach artificial intelligence through artificial intelli
 - Provides the Kidma Portal — a learning management platform integrating multiple AI models
 - Develops structured AI curricula for students (elementary through high school)
 - Runs professional development programs for teaching staff ("Or" Program)
+- Trains and advises school management/principals on AI policy and strategy, grounded in the **technology + pedagogy + psychology** training triangle
+- Extends beyond schools to community centers (מתנ"סים) and community hubs
 - Operates standalone workshops (website building, entrepreneurship, presentations, self-learning)
+- Publishes a Hebrew blog on AI in education — thought leadership for teachers, principals, and parents (kid-ma.com/articles)
 - All pedagogy is proprietary, research-based, and approved by the Israeli Ministry of Education
 
 ### Team
@@ -51,16 +55,15 @@ Both co-founders are childhood friends (20+ years). Education is not just anothe
 4. **October 7th** — Disrupted all plans. But one school in Dimona (Darca Zinman) didn't give up
 5. **Dimona pilot** — Recruited Rotem (first instructor), launched the first pilot. Field reality changed everything — learned, adapted, built from there
 6. **Darca Zinman renewed** — For year 2 and year 3 (ongoing)
-7. **Present (Year 3)** — Refining and sharpening the product while working in the field, at full profitability without external investment
+7. **Present** — Refining and sharpening the product while working in the field, at full profitability without external investment
 
-### Traction & Key Metrics (as of 2025)
+### Traction (qualitative)
 
-| Metric | Value |
-|--------|-------|
-| Schools | 7 |
-| Classes | 40+ |
-| Students served | 1,000+ |
-| Customer Retention | 100% — no school has ever left |
+- Operating for multiple years across a growing number of Israeli schools
+- Strong customer retention — schools renew year after year (including the original Darca Zinman pilot)
+- Bootstrapped and profitable, without external funding
+
+> **Note:** Specific counts (schools, classes, students) are intentionally omitted — they change frequently and vary by source (the website itself shows inconsistent figures). Pull live numbers from the team or the website rather than quoting fixed figures.
 
 ---
 
@@ -118,21 +121,41 @@ Every feature was born from actual classroom needs — students, instructors, an
 
 - ChatGPT / OpenAI — text generation, content planning
 - DALL·E — image generation
+- Midjourney — image generation
 - Google Gemini — text and strategy
 - Claude (Anthropic) — text generation
 - Nano Banana (via Gemini) — image generation
 - VEO (via Gemini) — video generation
+- Suno — AI music generation
+- Hedra — AI avatar / video generation
+- D-ID — AI avatar / talking-head video
 - Canva — graphic design and presentations
 - NotebookLM — self-directed learning, source analysis
 - BASE44 — AI-powered no-code website builder
 - Perplexity AI — advanced research tool
 - Google Translate — language support
 
+> Kidma deliberately uses leading, world-class AI tools — **not** stripped-down "educational" versions — so students learn on the real tools professionals use.
+
 ---
 
 ## 3. Student Programs — Lesson Plans (Current Year, תשפ"ו)
 
 The current school year organizes student lessons into two main sequential tracks, plus standalone workshops.
+
+### Ministry of Education Program Catalog (Gefen)
+
+All programs are registered in the MoE programs database and funded through the Gefen digital-innovation program. Current catalog numbers:
+
+| # | Program |
+|---|---------|
+| **45986** | Comprehensive hands-on AI workshop (flagship / best-seller) — elementary, middle, high school, and education staff |
+| **46920** | AI video workshop — from idea to finished clip |
+| **47732** | AI for elementary students (up to age 13) |
+| **47742** | Learning-skills program for students (research, questioning, AI as a learning tool) |
+| **47746** | "Or" — 30-hour teacher-training course (gmul-recognized, online) |
+
+Tracks are offered as a **half-year course (~16 sessions)** or a **full annual course (~32 sessions)**, plus **Advanced B** for returning (second-year) students.
 
 ### 3.1 Advanced A (מתקדמים א') — Practice in AI (11 Lessons)
 
@@ -199,6 +222,8 @@ A standalone version of the Webmaster AI lesson. Students go through a structure
 
 Kidma's "Or" (Light) program is an AI professional development course for teaching staff. It's built on the belief that AI is not a replacement for teachers but a powerful tool that frees them from technical tasks to focus on human connection, curiosity, and complex thinking. It targets all educators regardless of technological level or subject area.
 
+The program is a **30-hour, gmul-recognized** course registered with the Ministry of Education (**program 47746**, delivered online). Its foundation — and the foundation of Kidma's principal/management education — is the training triangle of **technology + pedagogy + psychology**: mastering the tools, grounding them in sound pedagogy, and understanding the human/psychological dynamics of a classroom (and a staff room) adopting AI.
+
 ### 4.1 Version 1 (תשפ"ה) — 10 Sessions
 
 | # | Title | Description |
@@ -235,13 +260,13 @@ Key difference: V2 is more practical and tool-focused, dropping broader theoreti
 ### Kidma 1.0 (Current — Instructor-Led)
 
 - Instructor-led model with Kidma staff in classrooms
-- Proven, validated, 100% retention
+- Proven, validated, strong retention
 
 ### Kidma 2.0 (Transition Underway — Self-Service Platform)
 
 - **Without Kidma instructor on-site** — platform + pedagogy delivered without physical Kidma staff
 - Enables true scaling without operational dependency
-- **Already validated:** Over 10% of current lessons are already running without Kidma instructors
+- **Already validated:** a growing share of lessons already run without a Kidma instructor on-site
 
 ### Strategic Shift
 
@@ -329,10 +354,10 @@ The previous year had a longer format. The current year's tracks condensed and r
 ## 9. Key Differentiators & Talking Points
 
 - **Profitable and self-funded** — Bootstrapped, healthy margins, no external funding
-- **100% customer retention** — Every school renewed, including the original Darca Zinman pilot
+- **Strong customer retention** — Schools renew year after year, including the original Darca Zinman pilot
 - **Built from the field** — Not a theoretical product; every feature emerged from real classroom pain
 - **MoE approved** — Has official Ministry of Education approvals for AI learning programs
-- **Transition to platform already happening** — 10%+ lessons already instructor-free (Kidma 2.0 validation)
+- **Transition to platform already happening** — a growing share of lessons already run instructor-free (Kidma 2.0 validation)
 - **Unique positioning** — "An AI system that teaches AI" — both the subject and the method
 - **Favorable unit economics** — Kidma 2.0 significantly reduces pricing while improving margins at scale
 - **Founder-market fit** — 20+ years of friendship, lifelong education involvement, relevant technical and domain expertise
