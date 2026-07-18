@@ -19,36 +19,46 @@ This skill defines Kidma's official visual identity and must be applied to **all
 
 ### Colors
 
-| Role                        | Hex       | Name          | Methodology Stage        | Usage                                               |
-|-----------------------------|-----------|---------------|--------------------------|-----------------------------------------------------|
-| Primary / Background        | `#292920` | Black         | —                        | Dark backgrounds, primary text on light surfaces    |
-| Background / Text           | `#F3F3F3` | White         | —                        | Light backgrounds, text on dark surfaces            |
-| Accent — Light Green        | `#93DC88` | Light Green   | "Try" (מנסים)            | "Try" elements, accents, growth/experimentation     |
-| Accent — Darker Green       | `#61C853` | Darker Green  | Secondary                | Secondary accents, buttons, maturation of knowledge |
-| Accent — Blue               | `#2669F6` | Blue          | "Understand" (מבינים)   | "Understand" elements, interactive features         |
-| Accent — Pink               | `#FF70A3` | Pink          | "Create" (יוצרים)        | "Create" elements, highlights, creativity           |
+| Role                        | Hex       | Name          | Usage                                               |
+|-----------------------------|-----------|---------------|-----------------------------------------------------|
+| Primary / Background        | `#292920` | Black         | Dark backgrounds, primary text on light surfaces    |
+| Background / Text           | `#F3F3F3` | White         | Light backgrounds, text on dark surfaces            |
+| Accent — Light Green        | `#93DC88` | Light Green   | Accents, highlights, growth/experimentation         |
+| Accent — Green              | `#61C853` | Green         | Secondary accents, buttons, a slightly bolder green |
+| Accent — Blue               | `#2669F6` | Blue          | Accents, interactive/links, highlights              |
+| Accent — Pink               | `#FF70A3` | Pink          | Primary CTA, highlights, creativity                 |
 
-### Methodology Color Mapping
+**Extended palette (web / marketing surfaces):**
 
-Kidma's three core teaching stages each have a dedicated color. **Always apply these consistently** across portals, lesson materials, and presentations:
+| Role                 | Hex       | Name        | Usage                                                          |
+|----------------------|-----------|-------------|----------------------------------------------------------------|
+| Accent — Dark Green  | `#237520` | Dark Green  | Deep green accents, high-contrast green text                   |
+| Accent — Dark Pink   | `#C42E72` | Dark Pink   | Deep pink accents, pink text on light backgrounds              |
+| Accent — Coral       | `#FF9B6A` | Coral       | Warm accent; pairs with Pink in the signature gradient         |
+| Surface tint         | `#FEF2F7` | Surface     | Soft pink-tinted near-white background (alt. to flat `#F3F3F3`) |
 
-| Stage (Hebrew) | Stage (English) | Color       | Hex       |
-|----------------|-----------------|-------------|-----------|
-| מבינים         | Understand      | Blue        | `#2669F6` |
-| מנסים          | Try             | Light Green | `#93DC88` |
-| יוצרים         | Create          | Pink        | `#FF70A3` |
+### The Three-Word Slogan & Accent Colors
 
-> **Slogan:** "מבינים. מנסים. יוצרים." (Understand. Try. Create.)
-> Always written with period separators between words. Color-code when possible (Blue · Green · Pink). Treated as a core brand asset, not just a tagline.
+Kidma's signature slogan is **"מבינים. מנסים. יוצרים."** (Understand. Try. Create.) — always written with period separators between words, and treated as a core brand asset, not just a tagline.
+
+The three accent colors (Blue, Green, Pink) are used **decoratively** to color the slogan and other triads. There is **no fixed word→color mapping** — Kidma's own surfaces rotate the colors freely (e.g. the website's home and about pages color the three words differently). Pick whatever gives the best visual balance and contrast; just keep the colors from the brand palette.
 
 ### Color Usage Rules
 
-- **Main palette** is Light Green, Darker Green, Blue, and Pink.
-- **Methodology colors are semantic:** Blue for Understand content, Light Green for Try activities, Pink for Create projects. Apply this consistently wherever content maps to a stage.
+- **Main palette** is Light Green, Green, Blue, and Pink.
+- **Accent colors are decorative, not semantic** — there is no fixed content→color mapping. Use them for balance and emphasis.
 - **CTAs:** Pink (`#FF70A3`) is the primary CTA color. Blue (`#2669F6`) or Light Green (`#93DC88`) are used as secondary CTAs depending on context — choose whichever provides better contrast and visual balance.
-- **Buttons / secondary UI:** Use Darker Green (`#61C853`) for secondary buttons and accents when you need a slightly bolder green.
-- **Rotation (non-methodology contexts):** When highlighting multiple distinct elements without methodology semantics, rotate through Light Green → Blue → Pink.
+- **Buttons / secondary UI:** Use Green (`#61C853`) for secondary buttons and accents when you need a slightly bolder green.
+- **Rotation:** When highlighting multiple distinct elements, rotate through Light Green → Blue → Pink.
 - **Never use more than 3 accent colors** in a single visual element or section.
+
+### Gradients (web / marketing)
+
+Kidma's web and marketing surfaces lean on gradients (documents and slides stay on flat brand colors).
+
+- **Signature gradient (primary):** Pink → Coral — `linear-gradient(135deg, #FF70A3, #FF9B6A)`. Used for hero emphasis, primary CTAs, and gradient text (`.text-gradient`).
+- **Section accent gradients:** each section keys off one accent family — Blue for pedagogy, Green for technology, Pink for general/home. Fade the accent into the light background with low-opacity glows/blurs rather than hard fills.
+- Keep gradients subtle and reserved for emphasis; never apply a gradient to the logo.
 
 ---
 
@@ -78,7 +88,7 @@ Kidma's three core teaching stages each have a dedicated color. **Always apply t
 - Never use text smaller than **14px** in digital materials.
 - Maintain minimum contrast ratio of **4.5:1** between text and background.
 - Use **RTL alignment** for all Hebrew text.
-- Integrate color coding with typography to reinforce methodology: Blue for Understand, Green for Try, Pink for Create.
+- Accent colors applied to type are **decorative** — there is no fixed word→color mapping.
 
 ---
 
@@ -188,10 +198,16 @@ doc.add_picture(
 :root {
   --kidma-black:        #292920;
   --kidma-white:        #F3F3F3;
-  --kidma-green-light:  #93DC88;  /* "Try" (מנסים) */
-  --kidma-green-dark:   #61C853;  /* Secondary accents / buttons */
-  --kidma-blue:         #2669F6;  /* "Understand" (מבינים) */
-  --kidma-pink:         #FF70A3;  /* "Create" (יוצרים) */
+  --kidma-green-light:  #93DC88;  /* light green accent */
+  --kidma-green-dark:   #61C853;  /* green — secondary accents / buttons */
+  --kidma-blue:         #2669F6;  /* blue accent */
+  --kidma-pink:         #FF70A3;  /* pink — primary CTA */
+  /* Extended palette (web / marketing) */
+  --kidma-green-deep:   #237520;  /* dark green (site token: --color-kidma-green-dark) */
+  --kidma-pink-deep:    #C42E72;  /* dark pink (site token: --color-kidma-pink-dark) */
+  --kidma-coral:        #FF9B6A;  /* coral — pairs with pink in the signature gradient */
+  --kidma-surface:      #FEF2F7;  /* soft pink-tinted near-white background */
+  --kidma-gradient:     linear-gradient(135deg, #FF70A3, #FF9B6A);  /* signature pink→coral */
   --font-primary:  'Assistant', Arial, sans-serif;
   --font-secondary: 'Rubik', sans-serif;
 }
@@ -234,7 +250,7 @@ Load fonts from Google Fonts when building HTML artifacts:
 - **Slide background:** `#F3F3F3` (light, default) for most slides; `#292920` (dark) for title/section slides or when dark mode is requested.
 - **Title text:** `Assistant Black (900)` or `Assistant Bold (700)`, `#292920` on light slides; `#F3F3F3` on dark slides.
 - **Body text:** `Assistant Regular (400)`, same color logic as titles.
-- **Accent shapes / lines:** Use methodology colors when content maps to a stage; otherwise rotate Light Green → Blue → Pink.
+- **Accent shapes / lines:** Rotate the accent palette (Light Green → Blue → Pink) for balance — the colors are decorative, not semantic.
 - **RGB values for python-pptx:**
 
 ```python
@@ -243,10 +259,10 @@ from pptx.dml.color import RGBColor
 
 KIDMA_BLACK        = RGBColor(0x29, 0x29, 0x20)
 KIDMA_WHITE        = RGBColor(0xF3, 0xF3, 0xF3)
-KIDMA_GREEN_LIGHT  = RGBColor(0x93, 0xDC, 0x88)  # "Try" (מנסים)
-KIDMA_GREEN_DARK   = RGBColor(0x61, 0xC8, 0x53)  # Secondary accents / buttons
-KIDMA_BLUE         = RGBColor(0x26, 0x69, 0xF6)  # "Understand" (מבינים)
-KIDMA_PINK         = RGBColor(0xFF, 0x70, 0xA3)  # "Create" (יוצרים)
+KIDMA_GREEN_LIGHT  = RGBColor(0x93, 0xDC, 0x88)  # light green accent
+KIDMA_GREEN_DARK   = RGBColor(0x61, 0xC8, 0x53)  # green — secondary accents / buttons
+KIDMA_BLUE         = RGBColor(0x26, 0x69, 0xF6)  # blue accent
+KIDMA_PINK         = RGBColor(0xFF, 0x70, 0xA3)  # pink — primary CTA
 ```
 
 ---
@@ -255,7 +271,7 @@ KIDMA_PINK         = RGBColor(0xFF, 0x70, 0xA3)  # "Create" (יוצרים)
 
 - **Heading styles:** `Assistant` (Black 900 / Bold 700 / SemiBold 600 depending on level), `#292920`.
 - **Body styles:** `Assistant Regular (400)`, `#292920` on white page background.
-- **Accent elements** (borders, table headers, callout boxes, highlights): Use methodology colors when applicable; otherwise rotate Light Green → Blue → Pink.
+- **Accent elements** (borders, table headers, callout boxes, highlights): Rotate the accent palette (Light Green → Blue → Pink) for balance — decorative, not semantic.
 - **Page background:** White (`#FFFFFF`) — `.docx` documents default to light mode.
 - **RTL:** Set section direction to RTL for Hebrew documents.
 - For branded Kidma `.docx` files, also read the `kidma-lesson-docx` skill for the official wave-design template.
@@ -270,10 +286,10 @@ KIDMA_PINK         = RGBColor(0xFF, 0x70, 0xA3)  # "Create" (יוצרים)
   <style>
     .k-bg          { fill: #292920; }
     .k-light       { fill: #F3F3F3; }
-    .k-green-light { fill: #93DC88; } /* Try (מנסים) */
-    .k-green-dark  { fill: #61C853; } /* Secondary accents */
-    .k-blue        { fill: #2669F6; } /* Understand (מבינים) */
-    .k-pink        { fill: #FF70A3; } /* Create (יוצרים) */
+    .k-green-light { fill: #93DC88; } /* light green accent */
+    .k-green-dark  { fill: #61C853; } /* green — secondary accents */
+    .k-blue        { fill: #2669F6; } /* blue accent */
+    .k-pink        { fill: #FF70A3; } /* pink — primary CTA */
   </style>
 </defs>
 ```
@@ -289,7 +305,7 @@ Before delivering any Kidma-branded output, verify:
 - [ ] Body text uses `Assistant Regular (400)` — **not Rubik**
 - [ ] Rubik used only for special/emphasis elements, not general body text
 - [ ] At least one accent color from the palette is present
-- [ ] Methodology colors (Blue/Green/Pink) applied correctly where content maps to Understand/Try/Create stages
+- [ ] Accent colors used decoratively for balance (no fixed word→color mapping required)
 - [ ] No more than 3 accent colors used in the same visual
 - [ ] Hebrew content is RTL-configured
 - [ ] Text contrast is legible (minimum 4.5:1 ratio)
