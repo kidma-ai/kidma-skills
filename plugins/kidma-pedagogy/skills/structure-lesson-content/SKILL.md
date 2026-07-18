@@ -93,7 +93,7 @@ Determine which format this lesson uses:
 
 ### Step 3: Extract Content Using the Template
 
-Read `references/output-template.md` for the exact output structure.
+Read `${CLAUDE_PLUGIN_ROOT}/references/output-template.md` for the exact output structure.
 
 **Extraction rules:**
 
@@ -173,4 +173,4 @@ Before presenting the output, verify:
 
 ## Output Template
 
-The complete output template with all sections and formatting is in `references/output-template.md`. **Always read it before starting extraction.**
+The complete output template with all sections and formatting is in `${CLAUDE_PLUGIN_ROOT}/references/output-template.md`. **Always read it before starting extraction.**
