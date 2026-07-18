@@ -53,7 +53,7 @@ Reference skills used as context by every other plugin.
 
 | Skill | Purpose |
 |-------|---------|
-| `kidma-daily-scan` | Scan the AI-in-education source catalog and produce a self-contained Hebrew context dossier that feeds the whole content pipeline (runs autonomously in a routine) |
+| `kidma-daily-scan` | Scan the AI-in-education source catalog and produce a self-contained Hebrew context dossier that feeds the whole content pipeline — including competitor-move intelligence (runs autonomously in a routine) |
 | `write-article` | Draft a complete Hebrew article (frontmatter + Markdown body) for kid-ma.com, newsletters, or school proposals |
 | `article-image-prompt` | Generate Nano Banana image prompts (documentary + conceptual styles) for an article |
 | `facebook-post` | Write three Hebrew Facebook post variants promoting a published article, plus a publishing checklist |

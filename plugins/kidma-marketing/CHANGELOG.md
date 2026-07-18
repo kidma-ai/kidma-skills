@@ -1,5 +1,9 @@
 # Changelog — kidma-marketing
 
+## 1.4.0 — 2026-07-18
+
+- `kidma-daily-scan` gains competitor intelligence. Bundles a new `references/competitors.md` (threat tiers, dated facts tagged עובדה/הערכה/הסקה, Kidma's Gefen position and differentiators, competitor-watch source list, and reliability caveats). Adds a `COMPETITOR` scenario ("competitor" / "סריקת מתחרים"), a sixth relevance-lens category for competitor moves (funding, acquisitions, Gefen listings, Hebrew localization, Ministry integrations, launches/shutdowns), and a new dossier section 6 "מודיעין תחרותי" (renumbering זרעי כתבות → 7 and הערות תפעול → 8). Article seeds now carry a differentiation note, and failure rules require competitor facts to keep their original tag/date and be re-verified when older than ~6 months.
+
 ## 1.3.0 — 2026-07-18
 
 - New skill: `kidma-daily-scan` — runs Kidma's content-source scan across the AI-in-education source catalog (Hebrew/English media, creators, institutional research, journals) and produces a self-contained Hebrew context dossier rich enough to feed `write-article`, `facebook-post`, Instagram, and newsletter work without re-research. Picks a scenario by day of week or explicit request, filters through the Kidma relevance lens, harvests audience-ready practical tips, and archives dated dossiers when a project folder is available. Designed to run autonomously inside a Claude routine. Bundles `references/sources.md` (source catalog) and `references/calendar.md` (weekly cadence, annual calendar, channel mapping).
