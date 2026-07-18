@@ -5,14 +5,14 @@ description: >
   for the marketing pipeline. ALWAYS use this skill when a scheduled task / routine
   says "run the daily scan", "kidma daily scan", "scan the sources", "content digest",
   "סריקת מקורות", or "דוח תוכן" — and also for on-demand runs like "run the Hebrew tier",
-  "scan the weekly tier", "full scan", "scan [source name]", "scan for [topic]", or when
-  the user asks what's new in AI-in-education sources for Kidma content. The skill picks
-  the scenario (by day of week or by explicit request), scans and filters items through
-  the Kidma relevance lens, extracts audience-ready practical tips, and outputs a
-  complete dossier. No Notion, no external services: when a Cowork project folder is
-  available the dossier is also saved there as a dated .md file (which enables dedupe
-  against previous runs); otherwise the dossier is the run's output only. Designed to
-  run autonomously inside a Claude routine — never pause to ask questions mid-run.
+  "scan the weekly tier", "full scan", "scan [source name]", "scan for [topic]",
+  "run the competitor scan" / "סריקת מתחרים", or when the user asks what's new in
+  AI-in-education sources for Kidma content. The skill picks the scenario (by day of
+  week or explicit request), filters items through the Kidma lens, flags competitor
+  moves against bundled competitor intelligence, extracts audience-ready tips, and
+  outputs a complete dossier. No Notion or external services: with a Cowork project
+  folder the dossier is also saved as a dated .md file (enabling dedupe); otherwise
+  output only. Runs autonomously — never pause to ask questions mid-run.
 ---
 
 # Kidma Source Scan → Raw Context Dossier
@@ -26,9 +26,12 @@ only artifact — nothing is saved to Notion or any external store.
 
 ## Step 0 — Load references
 
-Read `references/sources.md` (the full source catalog with tiers, URLs, and what each
-source gives Kidma) and `references/calendar.md` (weekly cadence, annual calendar,
-channel mapping). Both are required before scanning.
+Read all three reference files before scanning:
+- `references/sources.md` — the full source catalog (tiers, URLs, what each gives Kidma).
+- `references/calendar.md` — weekly cadence, annual calendar, channel mapping.
+- `references/competitors.md` — competitor intelligence: threat tiers, dated facts with
+  their fact/estimate/inference tags, Kidma differentiators, and the competitor-watch
+  source list. Applies to EVERY scenario, not only competitor scans.
 
 ## Step 1 — Pick the scenario
 
@@ -44,6 +47,7 @@ channel mapping). Both are required before scanning.
 | "full" / "everything" | FULL | DAILY + WEEKLY, EN + HE | last 7 days |
 | "scan [source name]" | SINGLE | That source only, deep read of recent items | last 30 days |
 | "scan for [topic]" | TOPIC | web_search + best-matching catalog sources | last 30 days |
+| "competitor" / "מתחרים" | COMPETITOR | Competitor-watch sources in competitors.md | last 30 days |
 
 A stated time window in the request ("last two weeks") overrides the default window.
 
@@ -65,6 +69,9 @@ Keep an item only if it clearly touches at least one:
 3. **AI tutors & pedagogical agents** — results, debates, failures, multi-agent learning (Kidma's 2028 vision).
 4. **Israel** — Ministry of Education, Israeli edtech, Hebrew discourse.
 5. **AI literacy & assessment** — competency frameworks, "how do we know a student learned".
+6. **Competitor moves** — any item involving an entity in competitors.md: funding,
+   acquisitions, new Gefen listings, Hebrew localization, Ministry integrations,
+   school wins, product launches or shutdowns/failures.
 
 Discard higher-ed-only admin news, model releases with no education angle, and hollow
 vendor PR. Target the 3–6 strongest items (SINGLE/TOPIC scans may keep more).
@@ -114,12 +121,23 @@ Cross-item synthesis: shared themes, contradictions to address honestly,
 ties to the annual-calendar moment of the current month (from calendar.md),
 and Ministry-vocabulary hooks (בינה מלאכותית לכל, כשירות AI) where natural.
 
-## 6. זרעי כתבות
+## 6. מודיעין תחרותי
+Competitor-relevant items from this window (category 6 of the lens), each with:
+what happened (dated, tagged עובדה/הערכה/הסקה per competitors.md conventions) ·
+threat-tier of the entity · what it changes for Kidma's positioning, pricing (Gefen),
+or the אור differentiator · suggested response angle if any. If nothing surfaced:
+"לא זוהו מהלכי מתחרים בחלון הסריקה" — never pad this section.
+
+## 7. זרעי כתבות
 2–3 concrete article seeds. Each: working title (HE) · thesis in one sentence ·
 which dossier items support it · suggested מבינים/מנסים/יוצרים framing ·
-which skeptic/counter-voice to engage for credibility.
+which skeptic/counter-voice to engage for credibility · differentiation note —
+where the angle occupies ground competitors miss (per competitors.md: the
+psychology/mindset lane, Hebrew-first pedagogy, responsible-AI/failure lessons,
+platform+continuity). Standing content opportunities in competitors.md may seed
+an article when today's items connect to them — but only with a fresh hook.
 
-## 7. הערות תפעול
+## 8. הערות תפעול
 Failed sources, items needing manual verification, conflicts left unresolved.
 ```
 
@@ -139,10 +157,13 @@ Never use Notion or any external storage service.
 
 ## Failure Rules
 
-- A failed source: skip, note in section 7, continue. One source never kills the run.
+- A failed source: skip, note in section 8, continue. One source never kills the run.
 - Fewer than 3 relevant items: report honestly what exists. Never pad, never invent.
 - Never fabricate quotes, stats, dates, or attributions. Uncertain wording → paraphrase.
 - All item dates are publication dates, not the scan date.
+- Competitor facts cited from competitors.md keep their original tag and date
+  (עובדה/הערכה/הסקה); re-verify before presenting any of them as current if the
+  fact is older than ~6 months. Reliability caveats listed there travel with the fact.
 - Conflicting sources: include both sides and flag the conflict in sections 3 and 5.
 - Dedupe: if a dossier archive folder exists (see Archive step), read the dossiers
   from the current window before writing, and drop items already covered unless there
@@ -152,4 +173,4 @@ Never use Notion or any external storage service.
 ## Manual invocation
 
 Same flow when a user asks mid-conversation; follow-up questions are then allowed,
-and the user may narrow the dossier ("only section 6", "English output").
+and the user may narrow the dossier ("only section 7", "English output").
